@@ -10,7 +10,7 @@ import {
 } from '@/types/booth';
 import EnvManager from './EnvManager';
 
-export default class BoothHelper {
+export default class BoothManager {
   private static boothsDataCache: Booth[] | null = null;
   private static pathGenerater: () => [string, string] =
     this.pathGenerateForProductEnv;
@@ -63,24 +63,24 @@ export default class BoothHelper {
    * Boothsのデータをロードする関数
    * @param {boolean} [force=false]- trueでキャッシュを無視して強制的に再ロード
    */
-  public static load(force?: boolean): BoothHelper {
+  public static load(force?: boolean): BoothManager {
     if (EnvManager.isDevEnv()) {
       this.checkoutDevEnv();
     }
 
-    if (BoothHelper.boothsDataCache === null || force === true) {
-      BoothHelper.boothsDataCache = this.loadBoothData();
+    if (BoothManager.boothsDataCache === null || force === true) {
+      BoothManager.boothsDataCache = this.loadBoothData();
     }
     return this;
   }
 
   public static getAllBooths(): Booth[] {
-    if (BoothHelper.boothsDataCache === null) {
+    if (BoothManager.boothsDataCache === null) {
       throw new Error(
         '\nloadメソッドよりも先にload必須のメソッドが呼ばれました。\nBoothHelperクラスのメソッドはloadメソッドを使用してからでないと使用できません。'
       );
     }
-    return BoothHelper.boothsDataCache;
+    return BoothManager.boothsDataCache;
   }
 
   /**
