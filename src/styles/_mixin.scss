@@ -1,4 +1,5 @@
-@import 'include-media/dist/include-media';
+@use 'include-media/dist/include-media' as *;
+@use './constants' as constant;
 
 $breakpoints: (
   'phone': 480px,       // スマートフォン（小）

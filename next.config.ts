@@ -4,9 +4,9 @@ import path from 'path';
 
 const generateSassAdditionalData = (): string => {
   if (EnvManager.isDevEnv()) {
-    return `@use './src/styles/_global' as *;`;
+    return `@use './src/styles/_mixin' as *;`;
   } else {
-    return `@use './src/styles/_global' as *; @use './src/styles/_debug' as *;`;
+    return `@use './src/styles/_mixin' as *; @use './src/styles/_debug' as *;`;
   }
 }
 
