@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ConstantsManager from '../lib/ConstantsManager';
 import 'normalize.css';
+import '@/styles/global.scss';
 
 // TODO: メタデータ変更
 export const metadata: Metadata = {
