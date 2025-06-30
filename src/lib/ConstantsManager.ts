@@ -1,6 +1,6 @@
-import z from 'zod';
 import path from 'path';
-import { openFile, parseYaml } from './yamlLoader';
+import z from 'zod';
+import { openFile, parseYaml } from './loader';
 
 export const constantsSchema = z.object({
   'head-title': z.string(),

@@ -1,6 +1,6 @@
 import path from 'path';
 import { z } from 'zod';
-import { openFile, parseYaml } from './yamlLoader';
+import { openFile, parseYaml } from './loader';
 
 import {
   BoothSchema,
