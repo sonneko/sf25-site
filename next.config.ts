@@ -8,7 +8,7 @@ const generateSassAdditionalData = (): string => {
   } else {
     return `@use './src/styles/_mixin' as *; @use './src/styles/_debug' as *;`;
   }
-}
+};
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,

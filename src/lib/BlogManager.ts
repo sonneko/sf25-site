@@ -2,10 +2,7 @@ import path from 'path';
 import { z } from 'zod';
 import { openFile, parseYaml, parseMd } from './loader';
 
-import {
-  BlogSchema,
-  type Blog,
-} from '@/types/blog';
+import { BlogSchema, type Blog } from '@/types/blog';
 import EnvManager from './EnvManager';
 
 export default class BlogManager {
@@ -41,27 +38,29 @@ export default class BlogManager {
     const blogIndex = parseYaml(fileContents, z.array(z.string()), filePath);
 
     // assets/blogs/[blog_name].yamlからid列を用いてそれぞれの詳細情報を取得
-    const blogsData: Blog[] = blogIndex.map(
-        (blog_name: string): Blog => {
-            const metaFilePath = path.join(
-            process.cwd(),
-            blogsDirectory,
-            `${blog_name}.yaml`
-        );
-        const mdFilePath = path.join(
-            process.cwd(),
-            blogsDirectory,
-            `${blog_name}.md`
-        );
-        
-        const metaFileContents = openFile(metaFilePath);
-        const mdFileContents = openFile(mdFilePath);
-        const eachBlogMetaData = parseYaml(metaFileContents, BlogSchema, metaFilePath);
-        const parsedContent = parseMd(mdFileContents, filePath);
+    const blogsData: Blog[] = blogIndex.map((blog_name: string): Blog => {
+      const metaFilePath = path.join(
+        process.cwd(),
+        blogsDirectory,
+        `${blog_name}.yaml`
+      );
+      const mdFilePath = path.join(
+        process.cwd(),
+        blogsDirectory,
+        `${blog_name}.md`
+      );
 
-        return { ...eachBlogMetaData, parsedContent };
-      }
-    );
+      const metaFileContents = openFile(metaFilePath);
+      const mdFileContents = openFile(mdFilePath);
+      const eachBlogMetaData = parseYaml(
+        metaFileContents,
+        BlogSchema,
+        metaFilePath
+      );
+      const parsedContent = parseMd(mdFileContents, filePath);
+
+      return { ...eachBlogMetaData, parsedContent };
+    });
 
     return blogsData;
   }

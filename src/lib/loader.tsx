@@ -36,7 +36,9 @@ export function parseYaml(
     const parsed = schema.parse(yaml.load(fileContents));
     return parsed;
   } catch (e) {
-    throw new Error(`Failed to parse yaml file: ${filePath}.\n error_message: ${e}`);
+    throw new Error(
+      `Failed to parse yaml file: ${filePath}.\n error_message: ${e}`
+    );
   }
 }
 
@@ -55,12 +57,14 @@ export function parseMd(
       gfm: true,
       breaks: true,
       pedantic: false,
-      async: false
+      async: false,
     });
     const cleanHtml = DOMPurify.sanitize(parsedDangerous);
     // innerHTMLを使用しているが、サニタイズ処理をしているので安全
     return <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />;
   } catch (e) {
-    throw new Error(`Failed to parse md file: ${filePath}.\n error_message: ${e}`);
+    throw new Error(
+      `Failed to parse md file: ${filePath}.\n error_message: ${e}`
+    );
   }
 }

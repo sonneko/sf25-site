@@ -2,7 +2,9 @@
 @use './constants' as constant;
 
 $breakpoints: (
-  'phone': 480px,       // スマートフォン（小）
-  'tablet': 768px,      // タブレット（縦）
-  'desktop': 1024px,    // デスクトップ
+  'phone': 480px,
+  // スマートフォン（小）
+  'tablet': 768px,
+  // タブレット（縦）
+  'desktop': 1024px // デスクトップ
 );
