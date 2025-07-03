@@ -51,12 +51,20 @@ export default function useErrorReport(
 
   useEffect(() => {
     const report = generateReport(errorObj, canUseDeviceInfo);
-    console.log(report);
-    fetch(ERROR_REPORT_ENDPOINT)
+    fetch(ERROR_REPORT_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(report),
+    })
       .then(() => {
         setReportProgress('done');
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        // WARNING: console.errorはここでのみ許可する
+        console.error(error); // eslint-disable-line no-console
+      });
   }, []);
 
   return reportProgress;
