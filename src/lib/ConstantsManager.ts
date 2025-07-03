@@ -5,6 +5,7 @@ import z from 'zod';
 import { openFile, parseYaml } from './loader';
 
 export const constantsSchema = z.object({
+  'app-url': z.string(),
   'head-title': z.string(),
   'head-description': z.string(),
   // TODO: その他の定数定義
