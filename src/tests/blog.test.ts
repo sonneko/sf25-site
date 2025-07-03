@@ -15,19 +15,21 @@ describe('BlogManager', () => {
     expect(allBlogs).toHaveLength(2);
 
     // 特定のブログデータが正しく読み込まれているかを確認
-    const blogTest1 = allBlogs.find(
-      blog => blog.id === 'blog_test_1'
-    );
+    const blogTest1 = allBlogs.find(blog => blog.id === 'blog_test_1');
     expect(blogTest1).toBeDefined();
     expect(blogTest1?.title).toBe('テストブログ1');
     expect(blogTest1?.author).toBe('テスト太郎');
-    expect(blogTest1?.parsedContent).toBe('これはテストブログ1のコンテンツです。\n');
+    expect(blogTest1?.parsedContent).toBe(
+      'これはテストブログ1のコンテンツです。\n'
+    );
 
     const blogTest2 = allBlogs.find(blog => blog.id === 'blog_test_2');
     expect(blogTest2).toBeDefined();
     expect(blogTest2?.title).toBe('別のテストブログ');
     expect(blogTest2?.author).toBe('開発者A');
-    expect(blogTest2?.parsedContent).toBe('これは別のテストブログのコンテンツです。キーワード「開発」を含みます。\n');
+    expect(blogTest2?.parsedContent).toBe(
+      'これは別のテストブログのコンテンツです。キーワード「開発」を含みます。\n'
+    );
   });
 
   it('should return null for a non-existent blog id', () => {
@@ -71,7 +73,7 @@ describe('BlogManager', () => {
       date: '2023-01-01',
       content: 'テストコンテンツ',
       parsedContent: 'テストコンテンツ',
-      tags: ['after']
+      tags: ['after'],
     };
     const url = BlogManager.generateBlogUrl(dummyBlog);
     expect(url).toBe('/blog/test_blog');

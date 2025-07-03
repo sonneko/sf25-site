@@ -1,4 +1,4 @@
-import "server-only";
+import 'server-only';
 
 import path from 'path';
 import { z } from 'zod';
@@ -61,7 +61,7 @@ export default class BlogManager {
       );
       const parsedContent = parseMd(mdFileContents, filePath);
 
-      return { ...eachBlogMetaData, parsedContent, content: mdFileContents};
+      return { ...eachBlogMetaData, parsedContent, content: mdFileContents };
     });
 
     return blogsData;
