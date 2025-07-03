@@ -1,3 +1,5 @@
+import "server-only";
+
 import path from 'path';
 import { z } from 'zod';
 import { openFile, parseYaml, parseMd } from './loader';
@@ -54,12 +56,12 @@ export default class BlogManager {
       const mdFileContents = openFile(mdFilePath);
       const eachBlogMetaData = parseYaml(
         metaFileContents,
-        BlogSchema,
+        BlogSchema.omit({ parsedContent: true, content: true }),
         metaFilePath
       );
       const parsedContent = parseMd(mdFileContents, filePath);
 
-      return { ...eachBlogMetaData, parsedContent };
+      return { ...eachBlogMetaData, parsedContent, content: mdFileContents};
     });
 
     return blogsData;

@@ -1,3 +1,5 @@
+import 'server-only';
+
 export type Env = 'product' | 'dev';
 
 export default class EnvManager {

@@ -1,3 +1,5 @@
+import 'server-only';
+
 import DOMPurify from 'dompurify';
 import fs from 'fs';
 import yaml from 'js-yaml';

@@ -1,3 +1,5 @@
+import "server-only";
+
 import path from 'path';
 import { z } from 'zod';
 import { openFile, parseYaml } from './loader';
