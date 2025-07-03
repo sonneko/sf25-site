@@ -12,7 +12,7 @@ export const BlogSchema = z.object({
   author: z.string().describe('記事の著者'),
   date: z.string().describe('記事の日付'),
   content: z.string().describe('記事の内容(mdそのまま)'),
-  tags: TagSchema,
+  tags: z.array(TagSchema),
   parsedContent: z.any(),
 });
 export type Blog = z.infer<typeof BlogSchema> & {
