@@ -4,7 +4,14 @@ import ConstantsManager from './ConstantsManager';
 
 export type SitemapInfo = {
   path: string;
-  changeFrequency: string;
+  changeFrequency:
+    | 'always'
+    | 'hourly'
+    | 'daily'
+    | 'weekly'
+    | 'monthly'
+    | 'yearly'
+    | 'never';
   priority: number;
 };
 
