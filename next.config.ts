@@ -23,8 +23,8 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     additionalData: generateSassAdditionalData(),
   },
-  basePath: EnvManager.isDevEnv() ? '/sf25-site-temporary' : '',
-  assetPrefix: EnvManager.isDevEnv() ? '/sf25-site-temporary' : '',
+  basePath: EnvManager.isDevEnv() ? '/sf25-site' : '',
+  assetPrefix: EnvManager.isDevEnv() ? '/sf25-site' : '',
 };
 
 export default nextConfig;
