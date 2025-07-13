@@ -1,15 +1,15 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import BoothHelper from '@/lib/booth';
+import BoothManager from '@/lib/BoothManager';
 import { type Booth } from '@/types/booth';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('BoothHelper', () => {
   beforeEach(() => {
-    BoothHelper.checkoutDevEnv();
-    BoothHelper.load(true); // forceをtrueにして強制的に再ロード
+    BoothManager.checkoutDevEnv();
+    BoothManager.load(true); // forceをtrueにして強制的に再ロード
   });
 
   it('should load all booths correctly when in dev environment', () => {
-    const allBooths = BoothHelper.getAllBooths();
+    const allBooths = BoothManager.getAllBooths();
 
     // 期待されるブースの数を確認
     expect(allBooths).toHaveLength(6);
@@ -29,19 +29,19 @@ describe('BoothHelper', () => {
   });
 
   it('should return null for a non-existent booth id', () => {
-    const booth = BoothHelper.getBoothById('non_existent_id');
+    const booth = BoothManager.getBoothById('non_existent_id');
     expect(booth).toBeNull();
   });
 
   it('should return the correct booth by id', () => {
-    const booth = BoothHelper.getBoothById('j2A_clas');
+    const booth = BoothManager.getBoothById('j2A_clas');
     expect(booth).toBeDefined();
     expect(booth?.name).toBe('美味しいたこ焼き');
     expect(booth?.groupName).toBe('中2A組');
   });
 
   it('should filter booths by type correctly', () => {
-    const clasBooths = BoothHelper.getBoothsByType('clas');
+    const clasBooths = BoothManager.getBoothsByType('clas');
     expect(clasBooths).toHaveLength(2);
     expect(clasBooths.every(booth => booth.type === 'clas')).toBe(true);
     expect(clasBooths.some(booth => booth.id === 'j2A_clas')).toBe(true);
@@ -49,7 +49,7 @@ describe('BoothHelper', () => {
   });
 
   it('should filter booths by location correctly', () => {
-    const insideBooths = BoothHelper.getBoothsByLocation('inside');
+    const insideBooths = BoothManager.getBoothsByLocation('inside');
     expect(insideBooths).toHaveLength(4);
     expect(insideBooths.every(booth => booth.locate === 'inside')).toBe(true);
     expect(insideBooths.some(booth => booth.id === 'volunteer_club')).toBe(
@@ -59,7 +59,7 @@ describe('BoothHelper', () => {
   });
 
   it('should return only food booths', () => {
-    const foodBooths = BoothHelper.getFoodBooths();
+    const foodBooths = BoothManager.getFoodBooths();
     expect(foodBooths).toHaveLength(2);
     expect(foodBooths.every(booth => booth.isFood === true)).toBe(true);
     expect(foodBooths.some(booth => booth.id === 'amusement_volu')).toBe(true);
@@ -67,35 +67,35 @@ describe('BoothHelper', () => {
   });
 
   it('should filter booths by place correctly', () => {
-    const classroomCBooths = BoothHelper.getBoothsByPlace('教室C');
+    const classroomCBooths = BoothManager.getBoothsByPlace('教室C');
     expect(classroomCBooths).toHaveLength(1);
     expect(classroomCBooths[0]?.id).toBe('h1A_clas');
 
     const noBoothsInNonExistentPlace =
-      BoothHelper.getBoothsByPlace('存在しない場所');
+      BoothManager.getBoothsByPlace('存在しない場所');
     expect(noBoothsInNonExistentPlace).toHaveLength(0);
   });
 
   it('should search booths by keyword in name or description (case-insensitive)', () => {
-    const puzzleBooths = BoothHelper.searchBooths('謎解き');
+    const puzzleBooths = BoothManager.searchBooths('謎解き');
     expect(puzzleBooths).toHaveLength(1);
     expect(puzzleBooths[0]?.id).toBe('puzzle_oper');
 
-    const takoyakiBooths = BoothHelper.searchBooths('たこ焼き');
+    const takoyakiBooths = BoothManager.searchBooths('たこ焼き');
     expect(takoyakiBooths).toHaveLength(1);
     expect(takoyakiBooths[0]?.id).toBe('j2A_clas');
 
-    const mixedKeywordBooths = BoothHelper.searchBooths('展示');
+    const mixedKeywordBooths = BoothManager.searchBooths('展示');
     expect(mixedKeywordBooths).toHaveLength(2);
     expect(mixedKeywordBooths.some(booth => booth.id === 'j1_grad')).toBe(true);
     expect(
       mixedKeywordBooths.some(booth => booth.id === 'volunteer_club')
     ).toBe(true);
 
-    const emptySearchResult = BoothHelper.searchBooths('存在しないキーワード');
+    const emptySearchResult = BoothManager.searchBooths('存在しないキーワード');
     expect(emptySearchResult).toHaveLength(0);
 
-    const caseInsensitiveSearch = BoothHelper.searchBooths('アミューズメント');
+    const caseInsensitiveSearch = BoothManager.searchBooths('アミューズメント');
     expect(caseInsensitiveSearch).toHaveLength(1);
     expect(caseInsensitiveSearch[0]?.id).toBe('amusement_volu');
   });
@@ -111,15 +111,15 @@ describe('BoothHelper', () => {
       place: 'テスト場所',
       groupName: 'テストグループ',
     };
-    const url = BoothHelper.generateBoothUrl(dummyBooth);
+    const url = BoothManager.generateBoothUrl(dummyBooth);
     expect(url).toBe('/booth/test_booth');
   });
 
   it('should throw error if methods requiring loaded data are called before load', () => {
     // キャッシュを強制的にクリアし、未ロード状態にする
-    BoothHelper['boothsDataCache'] = null;
+    BoothManager['boothsDataCache'] = null;
 
-    expect(() => BoothHelper.getAllBooths()).toThrowError(
+    expect(() => BoothManager.getAllBooths()).toThrowError(
       'loadメソッドよりも先にload必須のメソッドが呼ばれました。\nBoothHelperクラスのメソッドはloadメソッドを使用してからでないと使用できません。'
     );
   });

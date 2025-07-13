@@ -1,7 +1,7 @@
-import styles from './BoothCard.module.scss';
-import Link from 'next/link';
-import BoothHelper from '@/lib/booth';
+import BoothManager from '@/lib/BoothManager';
 import type { Booth } from '@/types/booth';
+import Link from 'next/link';
+import styles from './BoothCard.module.scss';
 
 export type BoothCardVariation = 'default' | 'small';
 
@@ -13,7 +13,7 @@ export default function BoothCard({
   variation?: BoothCardVariation;
 }) {
   const { name } = data;
-  const url = BoothHelper.generateBoothUrl(data);
+  const url = BoothManager.generateBoothUrl(data);
 
   if (variation === 'default') {
     return (

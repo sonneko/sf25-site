@@ -1,10 +1,14 @@
-import z from 'zod';
+import 'server-only';
+
 import path from 'path';
-import { openFile, parseYaml } from './yamlLoader';
+import z from 'zod';
+import { openFile, parseYaml } from './loader';
 
 export const constantsSchema = z.object({
+  'app-url': z.string(),
   'head-title': z.string(),
   'head-description': z.string(),
+  'dynamic-assets-url': z.string(),
   // TODO: その他の定数定義
 });
 export type Constants = z.infer<typeof constantsSchema>;

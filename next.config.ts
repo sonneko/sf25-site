@@ -2,6 +2,14 @@ import EnvManager from '@/lib/EnvManager';
 import type { NextConfig } from 'next';
 import path from 'path';
 
+const generateSassAdditionalData = (): string => {
+  if (EnvManager.isDevEnv()) {
+    return `@use './src/styles/_mixin' as *;`;
+  } else {
+    return `@use './src/styles/_mixin' as *; @use './src/styles/_debug' as *;`;
+  }
+};
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   compiler: {
@@ -13,7 +21,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-    additionalData: "@use './src/styles/_global' as *;",
+    additionalData: generateSassAdditionalData(),
   },
   basePath: EnvManager.isDevEnv() ? '/sf25-site-temporary' : '',
   assetPrefix: EnvManager.isDevEnv() ? '/sf25-site-temporary' : '',
