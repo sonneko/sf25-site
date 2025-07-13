@@ -1,10 +1,4 @@
-@use 'include-media/dist/include-media' as *;
-@use './constants' as constant;
-
-$breakpoints: (
-  'phone': 480px,
-  // スマートフォン（小）
-  'tablet': 768px,
-  // タブレット（縦）
-  'desktop': 1024px // デスクトップ
+@forward 'include-media/dist/include-media' with (
+  $breakpoints: ('phone': 480px, 'tablet': 768px, 'desktop': 1024px)
 );
+@use './constants' as constant;

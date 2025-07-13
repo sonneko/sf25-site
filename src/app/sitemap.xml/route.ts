@@ -30,11 +30,7 @@ export async function GET() {
     priority: 0.8,
   }));
 
-  const maps: SitemapInfo[] = [
-    ...staticMaps,
-    ...blogMaps,
-    ...boothMaps,
-  ];
+  const maps: SitemapInfo[] = [...staticMaps, ...blogMaps, ...boothMaps];
 
   return new Response(generateSitemap(maps), {
     headers: {
