@@ -1,6 +1,7 @@
 import EnvManager from '@/lib/EnvManager';
 import type { NextConfig } from 'next';
 import path from 'path';
+import type { Configuration } from 'webpack';
 
 const generateSassAdditionalData = (): string => {
   if (EnvManager.isDevEnv()) {
@@ -25,6 +26,33 @@ const nextConfig: NextConfig = {
   },
   basePath: EnvManager.isDevEnv() ? '/sf25-site' : '',
   assetPrefix: EnvManager.isDevEnv() ? '/sf25-site' : '',
+  webpack: (config: Configuration, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.module?.rules?.push({
+      test: /\.svg$/,
+      issuer: {
+        and: [/\.(ts|tsx|js|jsx|md|mdx)$/], // .ts, .tsx, .js, .jsx, .md, .mdx ファイルからインポートされる場合に適用
+      },
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: true,
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      removeViewBox: false, // viewBoxを削除しない
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ]})}
+
 };
 
 export default nextConfig;
