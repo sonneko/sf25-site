@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import ConstantsManager from '../lib/ConstantsManager';
 import 'normalize.css';
 import '@/styles/global.scss';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import Floating from '../components/Floating/Floating';
 
 // TODO: メタデータ変更
 export const metadata: Metadata = {
@@ -16,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ja'>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+        <Floating />
+      </body>
     </html>
   );
 }
