@@ -26,7 +26,10 @@ const nextConfig: NextConfig = {
   },
   basePath: EnvManager.isDevEnv() ? '/sf25-site' : '',
   assetPrefix: EnvManager.isDevEnv() ? '/sf25-site' : '',
-  webpack: (config: Configuration, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (
+    config: Configuration,
+    { buildId, dev, isServer, defaultLoaders, webpack }
+  ) => {
     config.module?.rules?.push({
       test: /\.svg$/,
       issuer: {
@@ -51,8 +54,10 @@ const nextConfig: NextConfig = {
             },
           },
         },
-      ]})}
-
+      ],
+    });
+    return config;
+  },
 };
 
 export default nextConfig;
