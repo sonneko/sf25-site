@@ -26,7 +26,8 @@
       "@/lib/*": ["./src/lib/*"],
       "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./src/utils/*"],
-      "@/styles/*": ["./src/styles/*"]
+      "@/styles/*": ["./src/styles/*"],
+      "@/assets-types/*": ["./node_modules/sf25-assets/dist/output/*"]
     },
     "noUnusedLocals": false,
     "noUnusedParameters": false,
