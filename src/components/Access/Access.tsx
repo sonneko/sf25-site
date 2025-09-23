@@ -22,7 +22,6 @@ export function Access() {
 
                             <h4>🚅 電車をご利用の場合</h4>
 
-
                             <p>
                                 <strong>
                                     <span className={styles.highlight}>大阪メトロ谷町線「四天王寺前夕陽ヶ丘駅」</span>

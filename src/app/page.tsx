@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <>
-      <main className={styles.container}>
+      <div className={styles.container}>
         <TopSlideShow />
         <CountDown />
         <News />
@@ -21,7 +21,7 @@ export default function HomePage() {
           SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。<br />SF運営代表のありがたいお言葉。
         </InfoSection>
         <Access />
-      </main>
+      </div>
     </>
   );
 }

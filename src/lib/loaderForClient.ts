@@ -1,5 +1,4 @@
 import type { Schema } from 'zod';
-import z from 'zod';
 import ConstantsManager from './ConstantsManager';
 import type { News } from '../types/news';
 import type { LostItem } from '../types/lostItem';
@@ -15,6 +14,7 @@ type GetDynamicResourceReturnType<T extends ResourceName> = Promise<
         ? LostItem[] | Error
         : never
 >;
+
 /**
  * 動的アセットにアクセスしてデータを得る。
  */
@@ -31,7 +31,7 @@ export async function getDynamicResource(
     });
   try {
     return schema.parse(json);
-  } catch (_err) {
+  } catch {
     return Error('\nfailed to parse the json located at ${url}\n\n');
   }
 }

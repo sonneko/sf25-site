@@ -1,13 +1,9 @@
-@use "../../styles/mixin" as mx;
-
 .googlemap {
     border: 0.2px solid #000;
     border-radius: 4px;
-    @include mx.media("<tablet") {
+    width: 60%;
+    @media screen and (max-width: 954px) {
         width: 95%;
-    }
-    @include mx.media(">tablet") {
-        width: 60%;
     }
 }
 
