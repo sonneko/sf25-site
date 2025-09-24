@@ -1,4 +1,4 @@
-import BoothManager from '@/lib/BoothManager';
+// import BoothManager from '@/lib/BoothManager';
 import type { Booth } from '@/types/booth';
 import Link from 'next/link';
 import styles from './BoothCard.module.scss';
@@ -13,14 +13,16 @@ export default function BoothCard({
   variation?: BoothCardVariation;
 }) {
   const { name } = data;
-  const url = BoothManager.generateBoothUrl(data);
+  //  const url = BoothManager.generateBoothUrl(data);
 
   if (variation === 'default') {
     return (
       <>
         <div className='container'>
           <div className={styles.title}>
-            <Link href={url}>
+            <Link href={'unimplemented!'}>
+              {' '}
+              {/*WARNING: not implemented"*/}
               <h5 className='title-name'>{name}</h5>
             </Link>
           </div>

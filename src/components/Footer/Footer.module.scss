@@ -45,7 +45,10 @@
     // タブレット以上のスタイル
     @include mx.media(">tablet") {
         flex-direction: column; // 項目を縦に並べる
+        /* WARNING: なぜprettierが許してくれない。 "unknown work gap" */
+        /* prettier-ignore */
         gap: 0.75rem;
+        /* prettier-ignore */
     }
 }
 

@@ -1,4 +1,4 @@
-@use "../../styles/mixin" as mx;
+@use '../../styles/mixin' as mx;
 
 .container {
   display: flex;
@@ -12,10 +12,10 @@
 }
 
 .box {
-  @include mx.media("<tablet") {
+  @include mx.media('<tablet') {
     width: 90%;
   }
-  @include mx.media(">tablet") {
+  @include mx.media('>tablet') {
     width: 60%;
   }
   padding: 1rem 2rem;

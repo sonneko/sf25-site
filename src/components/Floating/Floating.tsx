@@ -1,7 +1,3 @@
-export default function Floating()  {
-    return (
-        <>
-            
-        </>
-    )
+export default function Floating() {
+  return <></>;
 }

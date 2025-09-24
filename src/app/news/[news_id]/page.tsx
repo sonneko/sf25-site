@@ -6,7 +6,11 @@ export async function generateStaticParams() {
   return [{ news_id: 'iuu' }, { news_id: '2' }, { news_id: '3' }];
 }
 
-export default async function EachNewsPage({ params }: { params: Promise<Params> }) {
+export default async function EachNewsPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const newsId = (await params).news_id;
   return (
     <>

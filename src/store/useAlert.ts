@@ -14,8 +14,8 @@ const useAlert = create<AlertStore>(set => ({
   now: null,
   set: alert =>
     set(() => {
-        setTimeout(() => set(() => ({ now: null })), 5000);
-        return { now: alert, foldSignal: false };
+      setTimeout(() => set(() => ({ now: null })), 5000);
+      return { now: alert, foldSignal: false };
     }),
 }));
 

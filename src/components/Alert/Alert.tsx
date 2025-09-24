@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import styles from './Alert.module.scss';
 import useAlert from '../../store/useAlert';
 
@@ -16,6 +16,6 @@ export function Alert() {
       </>
     );
   } else {
-    return <></>
+    return <></>;
   }
 }

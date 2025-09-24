@@ -2,16 +2,20 @@ import React from 'react';
 import styles from './News.module.scss';
 import Link from 'next/link';
 
-type NewsItem =  {
+type NewsItem = {
   date: string;
   title: string;
   id: string;
-}
+};
 
 const newsItems: NewsItem[] = [
-  { date: '2023.10.26', title: '学園祭の準備が着々と進んでいます！', id: "" },
-  { date: '2023.10.20', title: '出展ブースが決定しました。詳細は後日発表！', id: "" },
-  { date: '2023.10.15', title: '公式サイトを公開しました。', id: "" },
+  { date: '2023.10.26', title: '学園祭の準備が着々と進んでいます！', id: '' },
+  {
+    date: '2023.10.20',
+    title: '出展ブースが決定しました。詳細は後日発表！',
+    id: '',
+  },
+  { date: '2023.10.15', title: '公式サイトを公開しました。', id: '' },
 ];
 
 export default function News() {

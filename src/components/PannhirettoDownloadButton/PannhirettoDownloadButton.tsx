@@ -2,7 +2,6 @@
 
 import styles from './PannhirettoDownloadButton.module.scss';
 
-import Link from 'next/link';
 import { useState } from 'react';
 
 export default function PannhirettoDownloadButton() {
@@ -20,7 +19,9 @@ export default function PannhirettoDownloadButton() {
           <div className={styles.telopBg}>
             <div className={styles.telop}>
               <h3>パンフレットをダウンロードする</h3>
-              <p>パンフレットダウンロードのためには以下の規約に同意する必要があります。</p>
+              <p>
+                パンフレットダウンロードのためには以下の規約に同意する必要があります。
+              </p>
               <div className={styles.listBox}>
                 <ul className={styles.list}>
                   <li>インターネット上に再公開しない</li>

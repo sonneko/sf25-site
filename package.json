@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node script/build.js && next build",
+    "build": "next build",
     "start": "npx serve@latest out",
     "export": "npm run build && next export",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -25,6 +25,7 @@
     "include-media": "^2.0.0",
     "next": "^15.3.5",
     "normalize.css": "^8.0.1",
+    "pinch-zoom-js": "^2.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "server-only": "^0.0.1",
