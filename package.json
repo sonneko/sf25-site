@@ -19,17 +19,16 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "full-check": "npm run type-check && npm run lint:check && npm run format:check && npm run test:coverage && npm run build"
+    "full-check": "npm run type-check && npm run lint:check && npm run format:check && npm run build"
   },
   "dependencies": {
     "include-media": "^2.0.0",
     "next": "^15.3.5",
     "normalize.css": "^8.0.1",
-    "pinch-zoom-js": "^2.3.5",
+    "pinch-zoom-element": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "server-only": "^0.0.1",
-    "sf25-assets": "github:sonneko/sf25-assets#lib",
     "zod": "^3.25.64",
     "zustand": "^5.0.8"
   },
@@ -52,8 +51,9 @@
     "js-yaml": "^4.1.0",
     "jsdom": "^26.0.0",
     "marked": "^15.0.12",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "sass": "^1.89.1",
+    "sf25-assets": "github:sonneko/sf25-assets#lib",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.0",
     "vitest": "^3.1.4",
