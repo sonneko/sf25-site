@@ -1,7 +1,7 @@
 'use client';
 import { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './Map.module.scss';
-import PinchZoom from 'pinch-zoom-js';
+import 'pinch-zoom-element';
 
 type Layer = 1 | 2 | 3 | 4 | 5;
 
@@ -17,6 +17,7 @@ export default function Map() {
   const focuedSvgEle = useRef<SVGElement>(null);
   const pinchTargetRef = useRef<HTMLDivElement>(null);
 
+  // SVGのfetch
   useEffect(() => {
     Promise.all([
       ...([1, 2, 3, 4, 5] as const).map((i: Layer) =>
@@ -26,13 +27,6 @@ export default function Map() {
       setSvgData(svgs as [string, string, string, string, string])
     );
   }, []);
-
-  useEffect(() => {
-    if (pinchTargetRef.current) {
-      const element = pinchTargetRef.current;
-      new PinchZoom(element);
-    }
-  }, [pinchTargetRef]);
 
   const upButtonHandler = () => {
     if (nowLayer === 5) {
@@ -74,9 +68,11 @@ export default function Map() {
         ) as SVGElement | null;
         if (ele) {
           if (focuedSvgEle.current) {
-            focuedSvgEle.current.style.fill = '#d5d5d5';
+            const DEFAULT_MAP_FILL_COLOR = '#d5d5d5';
+            focuedSvgEle.current.style.fill = DEFAULT_MAP_FILL_COLOR;
           }
-          ele.style.fill = '#fffc4aff';
+          const FOCUSED_MAP_FILL_COLOR = '#fffc4aff';
+          ele.style.fill = FOCUSED_MAP_FILL_COLOR;
           focuedSvgEle.current = ele;
         }
         setDetailInfo(placeId); // TODO: placeIdから企画情報を取得するコード
@@ -106,10 +102,10 @@ export default function Map() {
           </button>
         </div>
         <div className={styles.map}>
-          <div
+          <pinch-zoom
             ref={pinchTargetRef}
             dangerouslySetInnerHTML={{
-              __html: svgData[nowLayer - 1] as string,
+              __html: svgData[nowLayer - 1] as string, // WARNING: XSS注意
             }}
             onClick={displayDetail}
             className={styles.map_svg}

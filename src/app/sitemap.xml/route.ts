@@ -1,6 +1,8 @@
 import type { SitemapInfo } from '@/lib/generateSitemap';
 import generateSitemap from '@/lib/generateSitemap';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   const staticMaps: SitemapInfo[] = [
     { path: '', changeFrequency: 'weekly', priority: 1.0 },
