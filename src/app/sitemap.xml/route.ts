@@ -1,12 +1,9 @@
 import type { SitemapInfo } from '@/lib/generateSitemap';
 import generateSitemap from '@/lib/generateSitemap';
-import BlogManager from '@/lib/BlogManager';
-import BoothManager from '@/lib/BoothManager';
+
+export const dynamic = 'force-static';
 
 export async function GET() {
-  BlogManager.load();
-  BoothManager.load();
-
   const staticMaps: SitemapInfo[] = [
     { path: '', changeFrequency: 'weekly', priority: 1.0 },
     { path: 'info', changeFrequency: 'weekly', priority: 0.7 },
@@ -18,23 +15,19 @@ export async function GET() {
     { path: 'search', changeFrequency: 'weekly', priority: 0.7 },
   ];
 
-  const blogMaps: SitemapInfo[] = BlogManager.getAllBlogs().map(blog => ({
-    path: `blog/${blog.id}`,
-    changeFrequency: 'daily',
-    priority: 0.8,
-  }));
+  // const blogMaps: SitemapInfo[] = BlogManager.getAllBlogs().map(blog => ({
+  //   path: `blog/${blog.id}`,
+  //   changeFrequency: 'daily',
+  //   priority: 0.8,
+  // }));
 
-  const boothMaps: SitemapInfo[] = BoothManager.getAllBooths().map(booth => ({
-    path: `booth/${booth.id}`,
-    changeFrequency: 'daily',
-    priority: 0.8,
-  }));
+  // const boothMaps: SitemapInfo[] = BoothManager.getAllBooths().map(booth => ({
+  //   path: `booth/${booth.id}`,
+  //   changeFrequency: 'daily',
+  //   priority: 0.8,
+  // }));
 
-  const maps: SitemapInfo[] = [
-    ...staticMaps,
-    ...blogMaps,
-    ...boothMaps,
-  ];
+  const maps: SitemapInfo[] = [...staticMaps /*...blogMaps, ...boothMaps*/];
 
   return new Response(generateSitemap(maps), {
     headers: {

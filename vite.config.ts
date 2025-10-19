@@ -7,9 +7,4 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-  test: {
-    env: {
-      NEXT_PUBLIC_ENV: 'dev',
-    },
-  },
 });

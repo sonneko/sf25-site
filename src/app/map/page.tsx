@@ -1,3 +1,9 @@
+import Map from '../../components/Map/Map';
+
 export default function MapPage() {
-  return <>This is map page in "/map".</>;
+  return (
+    <>
+      <Map />
+    </>
+  );
 }
