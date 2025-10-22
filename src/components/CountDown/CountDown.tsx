@@ -37,7 +37,7 @@ export default function CountDown() {
           </span>
         </div>
       </div>
-    )
+    );
   } else {
     return (
       <div className={styles.container}>
@@ -47,6 +47,6 @@ export default function CountDown() {
           </span>
         </div>
       </div>
-    )
+    );
   }
 }

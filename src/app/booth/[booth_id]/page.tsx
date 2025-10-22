@@ -1,5 +1,5 @@
-import { getAllBoothsIDs, getBoothsById } from "../../../lib/BoothsProvider";
-import BoothCard from "@/components/BoothCard/BoothCard";
+import { getAllBoothsIDs, getBoothsById } from '../../../lib/BoothsProvider';
+import BoothCard from '@/components/BoothCard/BoothCard';
 
 type Props = {
   params: Promise<{ booth_id: string }>;
@@ -23,11 +23,12 @@ export default async function EachBoothPage({ params }: Props) {
   );
 }
 
-export async function generateStaticParams(): Promise<{
-  booth_id: string
-}[]> {
+export async function generateStaticParams(): Promise<
+  {
+    booth_id: string;
+  }[]
+> {
   return getAllBoothsIDs().map(id => {
     return { booth_id: id };
   });
 }
-
