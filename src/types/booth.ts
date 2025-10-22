@@ -1,36 +1,42 @@
 import { z } from 'zod';
 
-export const BoothKindSchema = z
-  .enum(['volu', 'club', 'grad', 'clas', 'oper'])
-  .describe(
-    '企画種別: 有志(volu)、クラブ(club)、学年(grad)、クラス(clas)、運営(oper)'
-  );
-export type BoothKind = z.infer<typeof BoothKindSchema>;
+export const boothTagSchema = z.enum([
+  "game/experience",
+  "attraction",
+  "food",
+  "exhibition",
+  "performance",
+  "movie",
+  "store",
+  "magazine"
+]);
+export type Boothtag = z.infer<typeof boothTagSchema>;
 
-export const BoothLocationSchema = z
-  .enum(['out', 'inside'])
-  .describe('企画の開催場所: 屋外(out) または 屋内(inside)');
-export type BoothLocation = z.infer<typeof BoothLocationSchema>;
 
-export const IsFoodBoothSchema = z
-  .boolean()
-  .describe('trueなら食品企画、falseなら非食品企画');
-export type IsFoodBooth = z.infer<typeof IsFoodBoothSchema>;
+export const boothColorSchema = z.enum([
+  "red", "blue", "yellow/green", "green", "purple", "orange", "random"
+]);
+export type BoothColor = z.infer<typeof boothColorSchema>;
 
-export const BoothSchema = z.object({
-  id: z.string().describe('企画ID: 英数字で一意。例: amusement_volu'),
-  type: BoothKindSchema,
-  locate: BoothLocationSchema,
-  isFood: IsFoodBoothSchema,
-  name: z
-    .string()
-    .describe('企画名: 表示用の日本語名称。例: アミューズメント課'),
-  description: z.string().describe('企画の説明文。'),
-  place: z
-    .string()
-    .describe('当日の会場場所名。例: 中庭、体育館、教室番号など'),
-  groupName: z
-    .string()
-    .describe('出展団体名: クラス名やクラブ名などの識別に使用'),
+
+export const placeIdSchema = z.enum([
+  "gym1", "m1a/m1b", "m2a/m2b/m2c/m2d", "h3a", "h3b", "h3c", "h3d", "ground", "sp3", "h2b/h2c", "m3c", "m3d", "spj4", "science", "katholiek", "theater", "biology", "h2d", "sp2", "h1c/h1d", "tech", "sp5", "h2a", "sp4", "physics", "h3e", "music", "large/sp1", "m3b", "?", "sp6", "gym2", "m1c/m1d", "meeting", "shodo", "m3a"
+]);
+export type PlaceId = z.infer<typeof placeIdSchema>;
+
+
+export const boothSchema = z.object({
+  booth_id: z.string(),
+  booth_name: z.string(),
+  short_description: z.string(),
+  long_description: z.string(),
+  tags: z.array(boothTagSchema),
+  color: boothColorSchema,
+  has_cm: z.boolean(),
+  has_website: z.boolean(),
+  group_name: z.string(),
+  place_id: placeIdSchema,
+  place: z.string(),
+  overview: z.string(),
 });
-export type Booth = z.infer<typeof BoothSchema>;
+export type Booth = z.infer<typeof boothSchema>;

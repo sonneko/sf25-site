@@ -30,7 +30,7 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -46,5 +46,8 @@
   },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

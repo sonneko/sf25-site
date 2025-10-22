@@ -12,13 +12,10 @@ export default function Header() {
 
   const navItems = [
     { name: 'HOME', path: '/' },
-    { name: 'BLOG', path: '/blog' },
-    { name: 'BOOTH', path: '/booth' },
     { name: 'INFO', path: '/info' },
     { name: 'MAP', path: '/map' },
     { name: 'SEARCH', path: '/search' },
     { name: 'STAGE', path: '/stage' },
-    { name: 'VIDEO', path: '/video' },
   ];
 
   return (

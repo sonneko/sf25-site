@@ -1,4 +1,5 @@
-// import BoothManager from '@/lib/BoothManager';
+import { getAllBoothsIDs, getBoothsById } from "../../../lib/BoothsProvider";
+import BoothCard from "@/components/BoothCard/BoothCard";
 
 type Props = {
   params: Promise<{ booth_id: string }>;
@@ -6,15 +7,27 @@ type Props = {
 
 export default async function EachBoothPage({ params }: Props) {
   const id = (await params).booth_id;
-
-  return <>This is each booths page in "/booth/{id}".</>;
+  const booth = getBoothsById(id);
+  return (
+    <>
+      This is each blogs page in "/blog/{id}".
+      <br />
+      {booth === undefined ? (
+        <>Not found</>
+      ) : (
+        <>
+          <BoothCard data={booth} />
+        </>
+      )}
+    </>
+  );
 }
 
-export async function generateStaticParams() {
-  // BoothManager.load();
-  // const data = BoothManager.getAllBooths();
-  // return data.map(eachBooth => {
-  //   return { booth_id: eachBooth.id };
-  // });
-  return [];
+export async function generateStaticParams(): Promise<{
+  booth_id: string
+}[]> {
+  return getAllBoothsIDs().map(id => {
+    return { booth_id: id };
+  });
 }
+

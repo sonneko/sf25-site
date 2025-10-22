@@ -12,8 +12,7 @@ export default function BoothCard({
   data: Booth;
   variation?: BoothCardVariation;
 }) {
-  const { name } = data;
-  //  const url = BoothManager.generateBoothUrl(data);
+  const { booth_name } = data;
 
   if (variation === 'default') {
     return (
@@ -23,7 +22,7 @@ export default function BoothCard({
             <Link href={'unimplemented!'}>
               {' '}
               {/*WARNING: not implemented"*/}
-              <h5 className='title-name'>{name}</h5>
+              <h5 className='title-name'>{booth_name}</h5>
             </Link>
           </div>
         </div>
@@ -34,7 +33,7 @@ export default function BoothCard({
       <>
         <div className='container'>
           <div className='card-body'>
-            <h5 className='card-title'>{name}</h5>
+            <h5 className='card-title'>{booth_name}</h5>
           </div>
         </div>
       </>

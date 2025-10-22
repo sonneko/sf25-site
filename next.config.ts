@@ -24,8 +24,6 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     additionalData: generateSassAdditionalData(),
   },
-  basePath: EnvManager.isDevEnv() ? '/sf25-site' : '',
-  assetPrefix: EnvManager.isDevEnv() ? '/sf25-site' : '',
   webpack: (config: Configuration) => {
     config.module?.rules?.push({
       test: /\.svg$/,
