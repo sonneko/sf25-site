@@ -10,6 +10,8 @@ function getBooths(): Booth[] {
     const files = ids.map(id => readFileSync(process.cwd() + "/assets/booths/" + id + ".json", "utf8"));
     booths = [];
     files.forEach(file => {
+        const parsed = JSON.parse(file);
+        if (parsed["not-complete"]) return;
         const booth = boothSchema.parse(JSON.parse(file));
         (booths as Booth[]).push(booth);
     });
