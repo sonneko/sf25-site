@@ -1,3 +1,5 @@
+/*  */
+
 const { parse } = require('csv-parse/sync');
 const { readFileSync, writeFileSync } = require('fs');
 

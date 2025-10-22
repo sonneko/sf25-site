@@ -77,6 +77,7 @@ export default [
       '*.d.ts',
       'coverage/**',
       'public/**',
+      'script/*.js',
     ],
   },
 
