@@ -1,0 +1,66 @@
+@use '../../styles/mixin' as mx;
+
+.map_container {
+  display: flex;
+  margin-top: 3em;
+  height: 80vh;
+  width: 100%;
+
+  .button_block {
+    height: 1em;
+    background-color: unset;
+    font-size: 2em;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    padding: 40px;
+    margin: 0 -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button:hover:not(:disabled) {
+    background-color: #eee;
+  }
+}
+
+.map {
+  border: 1px solid #ccc;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  @include mx.media('<tablet') {
+    width: 90%;
+  }
+
+  @include mx.media('>tablet') {
+    width: 70%;
+  }
+
+  div > * {
+    width: 500px;
+    height: 600px;
+  }
+}
+
+.detail_section {
+  border: 1px solid #ccc;
+  float: right;
+  padding: 2em;
+  width: 20%;
+}
+
+.map_svg {
+  width: 100%;
+  height: 100%;
+  :global(svg text),
+  :global(svg tspan) {
+    pointer-events: none;
+  }
+}
+
+.map_ui {
+  color: #444;
+  margin: 0;
+}

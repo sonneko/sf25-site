@@ -1,26 +1,17 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { METADATA_META_DESCRIPTION, METADATA_OGP_IMAGES_PATH, METADATA_SITE_NAME, METADATA_SITE_URL, METADATA_TITLE } from "@/lib/const";
+import type { Metadata } from 'next';
+import ConstantsManager from '../lib/ConstantsManager';
+import 'normalize.css';
+import '@/styles/global.scss';
+import styles from './layout.module.scss';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import Floating from '../components/Floating/Floating';
+import { Alert } from '../components/Alert/Alert';
 
-// headタグのメタデータ
-// TODO: 他に必要なメタタグがないか確認する
+// TODO: メタデータ変更
 export const metadata: Metadata = {
-  title: METADATA_TITLE,
-  description: METADATA_META_DESCRIPTION,
-  openGraph: {
-    type: "website",
-    locale: "ja_JP",
-    url: METADATA_SITE_URL,
-    title: METADATA_TITLE,
-    description: METADATA_META_DESCRIPTION,
-    siteName: METADATA_SITE_NAME,
-    images: METADATA_OGP_IMAGES_PATH
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
-  }
+  title: ConstantsManager.get('head-title'),
+  description: ConstantsManager.get('head-description'),
 };
 
 export default function RootLayout({
@@ -29,9 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='ja'>
       <body>
-        {children}
+        <Header />
+        <main className={styles.main}>
+          <Alert />
+          {children}
+        </main>
+        <Footer />
+        <Floating />
       </body>
     </html>
   );
