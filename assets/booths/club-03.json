@@ -1,9 +1,12 @@
 {
+  "$schema": "../booth-schema.json",
   "booth_id": "club-03",
   "booth_name": "PIZZA　GUT",
   "short_description": "餃子の皮を生地とした円状のピザを提供しています。手のひらサイズで手軽に食べれるのでぜひ来てください！",
   "long_description": "餃子の皮を生地とした円状のピザを提供しています。メニューはピーマン、ソーセージ、コーンなどで盛り付けたオーソドックスなピザです！ピザは手のひらサイズで手軽に食べれるのでぜひ来てください！",
-  "tags": ["food"],
+  "tags": [
+    "food"
+  ],
   "color": "yellow_green",
   "has_cm": false,
   "has_website": true,
