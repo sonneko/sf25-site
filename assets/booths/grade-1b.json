@@ -1,0 +1,9 @@
+{
+    "$schema": "../booth-schema.json",
+    "not-complete": true,
+    "booth_id": "grade-1b",
+    "booth_name": "中1バザー",
+    "place_id": "m1a/m1b",
+    "place": "M1B/M1B",
+    "overview": "バザー"
+}

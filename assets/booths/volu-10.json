@@ -1,0 +1,10 @@
+{
+    "$schema": "../booth-schema.json",
+    "not-complete": true,
+    "booth_id": "volu-10",
+    "booth_name": "書道・美術展示",
+    "group_name": "書道・美術展示",
+    "overview": "作品展示",
+    "place_id": "m1c/m1d",
+    "place": "M1C/M1D"
+}

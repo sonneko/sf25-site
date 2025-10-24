@@ -1,0 +1,10 @@
+{
+    "$schema": "../booth-schema.json",
+    "not-complete": true,
+    "booth_id": "volu-19",
+    "booth_name": "Violingual",
+    "group_name": "福富・鈴木によるバイオリンスペシャルコンサート",
+    "overview": "バイオリン",
+    "place_id": "music",
+    "place": "音楽室"
+}

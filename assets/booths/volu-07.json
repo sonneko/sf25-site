@@ -1,0 +1,10 @@
+{
+    "$schema": "../booth-schema.json",
+    "not-complete": true,
+    "booth_id": "volu-07",
+    "booth_name": "惑惑文藝部～綺談遊戯に集うものたち～",
+    "group_name": "文芸部",
+    "place_id": "h3e",
+    "overview": "短編映画",
+    "place": "H3E"
+}
