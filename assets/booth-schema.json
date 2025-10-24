@@ -127,6 +127,9 @@
     },
     "overview": {
       "type": "string"
+    },
+    "not-cpmplete": {
+      "type": "boolean"
     }
   },
   "additionalProperties": false

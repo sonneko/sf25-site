@@ -15,6 +15,7 @@ export default function Header() {
     { name: 'INFO', path: '/info' },
     { name: 'MAP', path: '/map' },
     { name: 'SEARCH', path: '/search' },
+    { name: 'BOOTH', path: '/booth' },
     { name: 'STAGE', path: '/stage' },
   ];
 

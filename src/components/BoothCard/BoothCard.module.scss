@@ -1,0 +1,54 @@
+.container {
+    width: 85vw;
+    margin: 0 auto;
+}
+
+.card_body {
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    background-color: aqua;
+    border-radius: 50px;;
+}
+
+.card_content {
+    margin: 5px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card_groupname {
+    text-align: right;
+    margin-right: 3em;
+}
+
+.card_title {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 0;
+    margin-left: 1.7em;
+}
+
+.card_text {
+    margin: 0 1.6em;
+}
+
+.card_img {
+    border-radius: 20px;
+    box-shadow: 10px 10px 0 0 #000000;
+}
+
+.tag {
+    margin: 0.5em 2em;
+}
+
+.tag_item {
+    display: inline-block;
+    color: #fff;
+    padding: 5px;
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: #000000;
+    margin: 0 3px;
+}
