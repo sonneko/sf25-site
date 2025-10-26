@@ -1,6 +1,5 @@
-// import BoothManager from '@/lib/BoothManager';
 import type { Booth } from '@/types/booth';
-import { convertBoothTagInfo } from '../../lib/BoothsProvider';
+import { convertBoothTagInfo } from '../../lib/BoothUtility';
 import styles from './BoothCard.module.scss';
 
 export type BoothCardVariation = 'default' | 'small';
@@ -12,13 +11,13 @@ export default function BoothCard({
   data: Booth;
   variation?: BoothCardVariation;
 }) {
-  const { booth_id, booth_name, group_name, long_description, tags } = data;
+  const { booth_id, booth_name, group_name, long_description, tags, color } = data;
 
   if (variation === 'default') {
     return (
       <>
         <div className={styles.container}>
-          <div className={styles.card_body}>
+          <div className={`${styles.card_body} ${styles[color]}`}>
             <img src={`booths-icon/${booth_id}.png`} alt={booth_name} width={200} height={200} className={styles.card_img}></img>
             <div className={styles.card_content}>
               <h5 className={styles.card_title}>{booth_name}</h5>

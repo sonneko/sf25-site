@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Booth } from '../types/booth';
+import type { Booth } from '../types/booth';
 import type DataStore from '@/store/stores';
 
 interface BoothsStore extends DataStore<Booth> {
