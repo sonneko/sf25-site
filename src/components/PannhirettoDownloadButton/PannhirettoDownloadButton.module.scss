@@ -92,3 +92,19 @@
   margin: 0 4rem;
   margin-top: 5rem;
 }
+
+.foldButton {
+  display: inline;
+  margin-top: 4rem;
+  text-decoration: underline;
+}
+
+.downloadUrl {
+  display: inline;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
