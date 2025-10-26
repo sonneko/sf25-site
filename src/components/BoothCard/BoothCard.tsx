@@ -1,5 +1,6 @@
 // import BoothManager from '@/lib/BoothManager';
 import type { Booth } from '@/types/booth';
+import { convertBoothTagInfo } from '../../lib/BoothsProvider';
 import styles from './BoothCard.module.scss';
 
 export type BoothCardVariation = 'default' | 'small';
@@ -25,25 +26,9 @@ export default function BoothCard({
               <p className={styles.card_text}>{long_description}</p>
               <div className={styles.tag}>
                 {
-                  tags.map(tag => {
-                    if (tag === "attraction") {
-                      return "アトラクション"
-                    } else if (tag === "exhibition") {
-                      return "展示"
-                    } else if (tag === "food") {
-                      return "食べ物"
-                    } else if (tag === "game/experience") {
-                      return "ゲーム・体験"
-                    } else if (tag === "magazine") {
-                      return "部誌販売/配布"
-                    } else if (tag == "movie") {
-                      return "映像"
-                    } else if (tag== "performance") {
-                      return "パフォーマンス"
-                    } else if (tag === "store") {
-                      return "販売"
-                    }
-                  }).map(tag => <span className={styles.tag_item} key={tag}>{tag}</span>)
+                  tags
+                    .map(convertBoothTagInfo)
+                    .map(tag => <span className={styles.tag_item} key={tag}>{tag}</span>)
                 }
               </div>
             </div>

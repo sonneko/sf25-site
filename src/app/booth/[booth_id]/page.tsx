@@ -1,5 +1,5 @@
-import { getAllBoothsIDs, getBoothsById } from '../../../lib/BoothsProvider';
 import BoothCard from '@/components/BoothCard/BoothCard';
+import { getAllBoothsIDs, getBoothsById } from '../../../lib/BoothsProvider';
 
 type Props = {
   params: Promise<{ booth_id: string }>;

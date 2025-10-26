@@ -1,5 +1,5 @@
 import BoothCard from "../../components/BoothCard/BoothCard";
-import { getAllBooths } from "../../lib/BoothsProvider"
+import { getAllBooths } from "../../lib/BoothsProvider";
 import styles from "./page.module.scss";
 
 export default async function BoothPage() {
