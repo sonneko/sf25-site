@@ -1,6 +1,6 @@
 import { Timetable } from '@/components/TimeTable/TimeTable';
-import { Booth } from '../../types/booth';
-import { EventData } from '../../components/TimeTable/types';
+import { type Booth } from '../../types/booth';
+import { type EventData } from '../../components/TimeTable/types';
 import { getAllBooths } from '../../lib/BoothsProvider';
 
 const musicTimeInfo: {

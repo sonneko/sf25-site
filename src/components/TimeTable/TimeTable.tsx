@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './TimeTable.module.scss';
-import { EventData, TimetableProps } from './types';
+import type { EventData, TimetableProps } from './types';
 
 /**
  * [時, 分]のタプルを分に変換するヘルパー関数

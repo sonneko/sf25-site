@@ -14,25 +14,25 @@ function levenshteinDistance(str1: string, str2: string): number {
   const dp = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
 
   // 初期化
-  // @ts-expect-error
+  // @ts-expect-error　エラハンドリングだるい
   for (let i = 0; i <= len1; i++) dp[i][0] = i;
-  // @ts-expect-error
+  // @ts-expect-error　エラハンドリングだるい
   for (let j = 0; j <= len2; j++) dp[0][j] = j;
 
   // DPテーブルを埋める
   for (let i = 1; i <= len1; i++) {
     for (let j = 1; j <= len2; j++) {
       if (str1[i - 1] === str2[j - 1]) {
-        // @ts-expect-error
+        // @ts-expect-error　エラハンドリングだるい
         dp[i][j] = dp[i - 1][j - 1]; 
       } else {
-        // @ts-expect-error
+        // @ts-expect-error エラハンドリングだるい
         dp[i][j] = Math.min(
-          // @ts-expect-error
+          // @ts-expect-error　エラハンドリングだるい
           dp[i - 1][j] + 1, // 削除
-          // @ts-expect-error
+          // @ts-expect-error　エラハンドリングだるい
           dp[i][j - 1] + 1, // 挿入
-          // @ts-expect-error
+          // @ts-expect-error エラハンドリングだるい
           dp[i - 1][j - 1] + 1 // 置換
         );
       }
@@ -40,7 +40,7 @@ function levenshteinDistance(str1: string, str2: string): number {
   }
 
   // 最終的な編集距離を返す
-  // @ts-expect-error
+  // @ts-expect-error　エラハンドリングだるい
   return dp[len1][len2];
 }
 
@@ -84,7 +84,7 @@ export default async function search(keyword: string): Booth[] {
       return distanceMin;
     }).sort((a, b) => b-a);
   });
-  listOfEachKeywordsSimilarityScore// TODO implement
+  // listOfEachKeywordsSimilarityScore //:TODO implement
 
   return [];
 }
