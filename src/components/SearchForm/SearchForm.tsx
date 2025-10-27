@@ -2,7 +2,7 @@
 
 import styles from './SearchForm.module.scss';
 import type { MouseEventHandler } from 'react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import SearchResult from '../SearchResult/SearchResult';
 import type { Booth } from '../../types/booth';
 
@@ -12,11 +12,11 @@ export default function SearchForm() {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
   const [searchResult, setSearchResult] = useState<Booth[] | null>(null);
 
-  const searchHandler: MouseEventHandler<HTMLDivElement> = _event => {
+  const searchHandler: MouseEventHandler<HTMLDivElement> = useCallback( _event => {
     setSearchInputValue('');
     setSearchResult(null);
     setSearchResult(search(searchInputValue));
-  };
+  }, [searchInputValue]);
 
   return (
     <>
