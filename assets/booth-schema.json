@@ -4,29 +4,12 @@
     "BoothTag": {
       "type": "string",
       "description": "boothTagSchema (z.enum)",
-      "enum": [
-        "game/experience",
-        "attraction",
-        "food",
-        "exhibition",
-        "performance",
-        "movie",
-        "store",
-        "magazine"
-      ]
+      "enum": ["game/experience", "attraction", "food", "exhibition", "performance", "movie", "store", "magazine"]
     },
     "BoothColor": {
       "type": "string",
       "description": "boothColorSchema (z.enum)",
-      "enum": [
-        "red",
-        "blue",
-        "yellow_green",
-        "green",
-        "purple",
-        "orange",
-        "random"
-      ]
+      "enum": ["red", "blue", "yellow_green", "green", "purple", "orange", "random"]
     },
     "PlaceId": {
       "type": "string",

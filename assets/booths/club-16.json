@@ -4,13 +4,7 @@
   "booth_name": "ライフサイエンスクラブ",
   "short_description": "ライフサイエンスクラブでは、カエルの解剖ショー、コケテラリウム作り体験や特製しおりの販売などの豊富な企画があります！",
   "long_description": "ライフサイエンスクラブでは、カエルの解剖ショー、コケテラリウム作り体験や特製しおりの販売などの豊富な企画があります。生き物に興味がある方、そうでない方も両方楽しんでいただけるようになっているので、ぜひ来てください！",
-  "tags": [
-    "game/experience",
-    "exhibition",
-    "performance",
-    "store",
-    "magazine"
-  ],
+  "tags": ["game/experience", "exhibition", "performance", "store", "magazine"],
   "color": "green",
   "has_cm": false,
   "has_website": true,

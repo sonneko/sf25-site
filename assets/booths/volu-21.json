@@ -1,10 +1,10 @@
 {
-    "$schema": "../booth-schema.json",
-    "not-complete": true,
-    "booth_id": "volu-21",
-    "booth_name": "小島・松村ウルトラバンド",
-    "group_name": "小島・松村ウルトラバンド",
-    "overview": "バイオリン",
-    "place_id": "gym1",
-    "place": "講堂"
+  "$schema": "../booth-schema.json",
+  "not-complete": true,
+  "booth_id": "volu-21",
+  "booth_name": "小島・松村ウルトラバンド",
+  "group_name": "小島・松村ウルトラバンド",
+  "overview": "バイオリン",
+  "place_id": "gym1",
+  "place": "講堂"
 }

@@ -4,11 +4,7 @@
   "booth_name": "んけうすproject2025",
   "short_description": "毎年恒例の部員が作ったゲームを販売する企画です。無料でも遊べるので、ぜひ寄って行ってください！※今年は数学はありません。",
   "long_description": "部員が作ったＰＣゲームを遊べます！！アクションゲームとかバトルシミュレーターゲームとかあります！！ＣＤを買えば家でも遊べます！！（激安）楽しいはずなので来てください！！！…え？数学の問題を解く企画は？チョットナニイッテルカワカラナイデス…",
-  "tags": [
-    "game/experience",
-    "store",
-    "magazine"
-  ],
+  "tags": ["game/experience", "store", "magazine"],
   "color": "blue",
   "has_cm": true,
   "has_website": true,

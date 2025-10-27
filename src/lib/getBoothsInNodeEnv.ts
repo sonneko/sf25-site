@@ -1,5 +1,5 @@
-import { readFileSync } from "fs";
-import { type Booth, boothSchema } from "../types/booth";
+import { readFileSync } from 'fs';
+import { type Booth, boothSchema } from '../types/booth';
 
 let booths: Booth[] = [];
 

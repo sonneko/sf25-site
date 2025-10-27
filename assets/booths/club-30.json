@@ -1,10 +1,10 @@
 {
-    "$schema": "../booth-schema.json",
-    "not-complete": true,
-    "booth_id": "club-30",
-    "booth_name": "合唱部",
-    "group_name": "合唱部",
-    "place": "音楽室",
-    "place_id": "music",
-    "overview": "合唱"
+  "$schema": "../booth-schema.json",
+  "not-complete": true,
+  "booth_id": "club-30",
+  "booth_name": "合唱部",
+  "group_name": "合唱部",
+  "place": "音楽室",
+  "place_id": "music",
+  "overview": "合唱"
 }

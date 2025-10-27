@@ -1,5 +1,9 @@
-import PannhirettoDownloadButton from "../PannhirettoDownloadButton/PannhirettoDownloadButton";
+import PannhirettoDownloadButton from '../PannhirettoDownloadButton/PannhirettoDownloadButton';
 
 export default function Floating() {
-  return <><PannhirettoDownloadButton /></>;
+  return (
+    <>
+      <PannhirettoDownloadButton />
+    </>
+  );
 }

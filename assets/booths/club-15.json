@@ -4,9 +4,7 @@
   "booth_name": "映画",
   "short_description": "こんにちはess部です。南部に行ってきました。演者、カメラ、編集、すごい監督のもと完成したものです。",
   "long_description": "こんにちはess部です。中2〜高2で南部に行き、演者、カメラ、編集、監督に分かれ、20分ほどの短編映画を作りました。ホームアローンのパロディです。何度も失敗して何度も撮影し直して作った完成度の高いものなので是非きてください。",
-  "tags": [
-    "movie"
-  ],
+  "tags": ["movie"],
   "color": "random",
   "has_cm": false,
   "has_website": true,

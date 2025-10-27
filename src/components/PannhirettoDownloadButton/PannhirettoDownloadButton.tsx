@@ -29,8 +29,19 @@ export default function PannhirettoDownloadButton() {
                 </ul>
               </div>
               <div className={styles.buttons}>
-                <a href='/pamphlet.pdf' onClick={() => setIsShowing(false)} className={styles.downloadUrl}>ダウンロードする</a>
-                <a onClick={() => setIsShowing(false)} className={styles.foldButton}>閉じる</a>
+                <a
+                  href='/pamphlet.pdf'
+                  onClick={() => setIsShowing(false)}
+                  className={styles.downloadUrl}
+                >
+                  ダウンロードする
+                </a>
+                <a
+                  onClick={() => setIsShowing(false)}
+                  className={styles.foldButton}
+                >
+                  閉じる
+                </a>
               </div>
             </div>
           </div>
