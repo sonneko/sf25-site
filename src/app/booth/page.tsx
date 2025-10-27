@@ -7,7 +7,9 @@ export default async function BoothPage() {
     return (
         <>
             <h1 className={styles.title}>Booths</h1>
-            {booths.map((booth, index) => <BoothCard key={index} data={booth} />)}
+            {booths.map((booth, index) => 
+                <div key={index} className={styles.spacer}><BoothCard key={index} data={booth} /></div>
+            )}
         </>
     )
 }
