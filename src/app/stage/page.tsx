@@ -35,7 +35,7 @@ const gym1TimeInfo: {
   "volu-17": { startTime: [12, 6], endTime: [12, 25], color: "teal"},
   "volu-18": { startTime: [12, 29], endTime: [12, 38], color: "red"},
   "volu-20": { startTime: [12, 41], endTime: [12, 56], color: "orange"},
-  "volu-25": { startTime: [13, 1], endTime: [13, 11], color; "purple"},
+  "volu-25": { startTime: [13, 1], endTime: [13, 11], color: "purple"},
   "volu-30": { startTime: [13, 14], endTime: [13, 24], color: "blue"},
   "volu-22": { startTime: [13, 27], endTime: [13, 39], color: "teal"},
   "volu-23": { startTime: [13, 42], endTime: [13, 57], color: "red"},
