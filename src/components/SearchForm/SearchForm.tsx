@@ -12,11 +12,16 @@ export default function SearchForm() {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
   const [searchResult, setSearchResult] = useState<Booth[] | null>(null);
 
-  const searchHandler: MouseEventHandler<HTMLDivElement> = useCallback( _event => {
-    setSearchInputValue('');
-    setSearchResult(null);
-    setSearchResult(search(searchInputValue));
-  }, [searchInputValue]);
+  const searchHandler: MouseEventHandler<HTMLDivElement> = useCallback(
+    _event => {
+      setSearchInputValue('');
+      setSearchResult(null);
+      search(searchInputValue).then(result => {
+        setSearchResult(result);
+      });
+    },
+    [searchInputValue]
+  );
 
   return (
     <>

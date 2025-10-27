@@ -25,4 +25,4 @@ module.export = function levenshteinDistance(str1, str2) {
   }
 
   return dp[len1][len2];
-}
+};

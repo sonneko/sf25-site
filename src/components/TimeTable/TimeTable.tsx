@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './TimeTable.module.scss';
-import { EventData, TimetableProps } from './types';
+import type { EventData, TimetableProps } from './types';
 
 /**
  * [時, 分]のタプルを分に変換するヘルパー関数
@@ -48,7 +48,7 @@ export const Timetable = ({
     const eventStartMinutes = timeToMinutes(event.startTime);
     const eventEndMinutes = timeToMinutes(event.endTime);
 
-    const offsetMinutes = eventStartMinutes - START_MINUTES; 
+    const offsetMinutes = eventStartMinutes - START_MINUTES;
     const durationMinutes = eventEndMinutes - eventStartMinutes;
 
     const top = (offsetMinutes / 30) * pixelPer30Minutes;
@@ -87,10 +87,11 @@ export const Timetable = ({
       .filter(event => event.stage === stage)
       .map(event => {
         const positionStyles = calculateEventStyles(event);
-        
+
         const colorClassName = `color${event.color.charAt(0).toUpperCase()}${event.color.slice(1)}`;
-        const colorClass = styles[colorClassName as keyof typeof styles] || styles.colorBlue; 
-        
+        const colorClass =
+          styles[colorClassName as keyof typeof styles] || styles.colorBlue;
+
         const displayTime = `${minutesToDisplayTime(timeToMinutes(event.startTime))} - ${minutesToDisplayTime(timeToMinutes(event.endTime))}`;
 
         return (
@@ -108,18 +109,22 @@ export const Timetable = ({
   };
 
   return (
-    <div className={styles.timetableContainer} style={{'--marker-height': `${pixelPer30Minutes}px`} as React.CSSProperties}>
-      
-      <div className={styles.timeAxis}>
-        {renderTimeMarkers()}
-      </div>
+    <div
+      className={styles.timetableContainer}
+      style={
+        { '--marker-height': `${pixelPer30Minutes}px` } as React.CSSProperties
+      }
+    >
+      <div className={styles.timeAxis}>{renderTimeMarkers()}</div>
 
       <div className={styles.stageSchedule}>
-        
         {/* 講堂 */}
         <div className={styles.stage}>
           <div className={styles.stageHeader}>講堂</div>
-          <div className={styles.eventGrid} style={{ height: `${TOTAL_HEIGHT}px` }}>
+          <div
+            className={styles.eventGrid}
+            style={{ height: `${TOTAL_HEIGHT}px` }}
+          >
             {renderStageEvents('gym1')}
           </div>
         </div>
@@ -127,11 +132,13 @@ export const Timetable = ({
         {/* 音楽室 */}
         <div className={styles.stage}>
           <div className={styles.stageHeader}>音楽室</div>
-          <div className={styles.eventGrid} style={{ height: `${TOTAL_HEIGHT}px` }}>
+          <div
+            className={styles.eventGrid}
+            style={{ height: `${TOTAL_HEIGHT}px` }}
+          >
             {renderStageEvents('music')}
           </div>
         </div>
-
       </div>
     </div>
   );

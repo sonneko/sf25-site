@@ -13,9 +13,7 @@ export default function HomePage() {
         <TopSlideShow />
         <CountDown />
         <News />
-        <InfoSection title='SFとは？'>
-          SFとは、星光生が....
-        </InfoSection>
+        <InfoSection title='SFとは？'>SFとは、星光生が....</InfoSection>
         <InfoSection title='中村/SF運営代表 挨拶'>
           2025年度SFにようこそ！SF運営委員長を担当しております中村天
           です。「とにかく、みんなが楽しいと言っちゃうSFを作りたい！」と

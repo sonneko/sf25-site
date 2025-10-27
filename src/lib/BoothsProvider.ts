@@ -1,4 +1,3 @@
-import 'server-only';
 import type { Booth } from '../types/booth';
 import { boothSchema } from '../types/booth';
 

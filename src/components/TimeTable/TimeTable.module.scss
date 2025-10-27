@@ -1,9 +1,9 @@
 /* 変数定義 (色) */
-$color-blue: #4CAF50;
-$color-red: #F44336;
-$color-purple: #9C27B0;
-$color-orange: #FF9800;
-$color-teal: #00BCD4;
+$color-blue: #4caf50;
+$color-red: #f44336;
+$color-purple: #9c27b0;
+$color-orange: #ff9800;
+$color-teal: #00bcd4;
 $grid-line: #ccc;
 $time-axis-width: 80px;
 
@@ -25,7 +25,7 @@ $time-axis-width: 80px;
 
 .timeMarker {
   /* 30分ごとの基本の高さ (pixelPer30Minutesの値に合わせる) */
-  height: var(--marker-height, 60px); 
+  height: var(--marker-height, 60px);
   line-height: var(--marker-height, 60px);
   text-align: right;
   padding-right: 10px;
@@ -112,8 +112,18 @@ $time-axis-width: 80px;
 }
 
 /* 色クラス */
-.colorBlue { background-color: $color-blue; }
-.colorRed { background-color: $color-red; }
-.colorPurple { background-color: $color-purple; }
-.colorOrange { background-color: $color-orange; }
-.colorTeal { background-color: $color-teal; }
+.colorBlue {
+  background-color: $color-blue;
+}
+.colorRed {
+  background-color: $color-red;
+}
+.colorPurple {
+  background-color: $color-purple;
+}
+.colorOrange {
+  background-color: $color-orange;
+}
+.colorTeal {
+  background-color: $color-teal;
+}
