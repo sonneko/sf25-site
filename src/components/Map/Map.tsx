@@ -11,7 +11,7 @@ export default function Map() {
   const [detailInfo] = useState<string>(
     '地図中の文字をクリックするとここに詳細が表示されます。'
   );
-  const [is_highschool] = useState<boolean>(false);
+  const [is_highschool, setIs_highschool] = useState<boolean>(false);
   const pinchTargetRef = useRef<HTMLDivElement>(null);
 
   const upButtonHandler = () => {
@@ -51,8 +51,9 @@ export default function Map() {
             ↓
           </button>
           <div
-            className={`${styles.button_block} ${is_highschool ? 'h' : 'm'}`}
-          ></div>
+            className={styles.button_block}
+            onClick={() => setIs_highschool(!is_highschool)}
+          >{is_highschool ? "高校" : "中学"}</div>
         </div>
         <div className={styles.map}>
           <pinch-zoom ref={pinchTargetRef} className={styles.map_svg}>
