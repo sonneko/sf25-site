@@ -23,8 +23,8 @@ function levenshteinDistance(str1: string, str2: string): number {
   for (let i = 1; i <= len1; i++) {
     for (let j = 1; j <= len2; j++) {
       if (str1[i - 1] === str2[j - 1]) {
-        // @ts-expect-error エラハンドリングだるい
-        dp[i][j] = dp[i - 1][j - 1];
+        // @ts-expect-error　エラハンドリングだるい
+        dp[i][j] = dp[i - 1][j - 1]; 
       } else {
         // @ts-expect-error エラハンドリングだるい
         dp[i][j] = Math.min(
@@ -100,11 +100,6 @@ export default async function useSearch(keyword: string): Promise<Booth[]> {
   //   .sort((a, b) => b.distance - a.distance)
   //   .map(booth => booth.id);
 
-  // const booths = useBooths().data;
-
-  // return await Promise.all(
-  //   idList.map(async id => booths.find(booth => booth.booth_id === ) as Booth)
-  // );
-
+  // return await Promise.all(idList.map(async id => await getBoothsById(id) as Booth));
   return [];
 }

@@ -64,3 +64,11 @@
   color: #444;
   margin: 0;
 }
+
+.h::before {
+  content: '高校';
+}
+
+.m {
+  content: '中学';
+}
