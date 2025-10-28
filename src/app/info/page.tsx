@@ -11,7 +11,7 @@ export default function InfoPage() {
         </div>
         <div className={styles.tr}>
           <div className={`${styles.th} ${styles.bold}`}>開催日時</div>
-          <div className={styles.th}>11/3(日)・9:00〜15:30</div>
+          <div className={styles.th}>11/3(月)・9:00〜15:30</div>
         </div>
         <div className={styles.tr}>
           <div className={`${styles.th} ${styles.bold}`}>持ち物</div>
