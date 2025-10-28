@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TopSlideShow.module.scss';
 
-const SLIDESHOW_DELAY = 500;
+const SLIDESHOW_DELAY = 3000;
 
 function useSlideShow(urlList: string[], delay: number) {
   if (urlList.length <= 1) {
@@ -12,11 +12,7 @@ function useSlideShow(urlList: string[], delay: number) {
   }
   const [slideShowUrlIndex, setSlideShowUrlIndex] = useState<number>(0);
   const routine = () => {
-    if (slideShowUrlIndex === urlList.length - 1) {
-      setSlideShowUrlIndex(0);
-      return;
-    }
-    setSlideShowUrlIndex(slideShowUrlIndex + 1);
+    setSlideShowUrlIndex(pre => (pre === urlList.length - 1 ? 0 : pre + 1));
   };
   useEffect(() => {
     const id = setInterval(routine, delay);
