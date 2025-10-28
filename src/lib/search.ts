@@ -26,8 +26,8 @@ function levenshteinDistance(str1: string, str2: string): number {
   for (let i = 1; i <= len1; i++) {
     for (let j = 1; j <= len2; j++) {
       if (str1[i - 1] === str2[j - 1]) {
-        // @ts-expect-error　エラハンドリングだるい
-        dp[i][j] = dp[i - 1][j - 1]; 
+        // @ts-expect-error エラハンドリングだるい
+        dp[i][j] = dp[i - 1][j - 1];
       } else {
         // @ts-expect-error エラハンドリングだるい
         dp[i][j] = Math.min(
@@ -80,7 +80,6 @@ function segment(input: string): string[] {
   return tinySegmenter.segment(input);
 }
 
-
 // --- ⭐️ 検索ロジックを精度向上のために完全に書き換えました ⭐️ ---
 
 export default async function useSearch(keyword: string): Promise<Booth[]> {
@@ -89,42 +88,41 @@ export default async function useSearch(keyword: string): Promise<Booth[]> {
 
   // キーワードがない場合は空の配列を返すか、全ブースを返すか選択可能ですが、今回は空で。
   if (segmentedKeywords.length === 0) {
-    return []; 
+    return [];
   }
-  
+
   // 各ブースのスコアを保持する配列。インデックスの順序に対応。
   const boothScores: number[] = Array(searchIndex.length).fill(0);
 
   segmentedKeywords.forEach(searchWord => {
     // 短すぎるノイズ単語（例: 'a', 'の', 'は'）を無視して精度向上
-    if (searchWord.length < 2) return; 
+    if (searchWord.length < 2) return;
 
     searchIndex.forEach((target, index) => {
       let maxScoreForWord = 0; // その検索キーワードに対して、ブースが獲得できる最高スコア
 
       target.tokens.forEach(indexToken => {
-        
         // 1. 🥇 完全一致 (Exact Match): 最高のスコア
         if (indexToken === searchWord) {
           maxScoreForWord = Math.max(maxScoreForWord, 1000);
           return; // 最も高いスコアなので、これ以上チェックする必要はない
         }
-        
+
         // 2. 🥈 部分一致 (Containment): 高いスコア
         // 検索語がインデックス語に含まれている場合（例: 検索「化学」, インデックス「化学部」）
         if (indexToken.includes(searchWord)) {
-           maxScoreForWord = Math.max(maxScoreForWord, 800);
+          maxScoreForWord = Math.max(maxScoreForWord, 800);
         }
-        
+
         // 3. 🥉 レーベンシュタイン類似度 (Fuzzy Match / タイポ対策): 中程度のスコア
         const simScore = similarity(indexToken, searchWord);
         // 類似度が80%以上の場合のみスコアを加算
-        if (simScore >= 60) { 
+        if (simScore >= 60) {
           // スコアに換算し、既存のスコアと比較
-          maxScoreForWord = Math.max(maxScoreForWord, Math.floor(simScore * 7)); 
+          maxScoreForWord = Math.max(maxScoreForWord, Math.floor(simScore * 7));
         }
       });
-      
+
       // 🚨 スコアを加算: 複数の検索キーワードがある場合、それぞれの最高スコアをブース全体に加算する
       // @ts-expect-error エラーハンドリングめんどい
       boothScores[index] += maxScoreForWord;
@@ -141,14 +139,14 @@ export default async function useSearch(keyword: string): Promise<Booth[]> {
     .filter(booth => booth.score > 0) // スコアが0のブースは検索結果から除外
     .sort((a, b) => b.score - a.score) // スコアが大きい順にソート
     .map(booth => booth.id);
-  
+
   // 💡 2. ブースデータを一度だけ取得
   const allBooths = await getBooths();
-  
+
   // 💡 3. ソートされた idList の順序でブースデータを取り出して返す
   const sortedBooths = idList
     .map(id => allBooths.find(booth => booth.booth_id === id))
-    .filter((booth): booth is Booth => booth !== undefined); 
+    .filter((booth): booth is Booth => booth !== undefined);
 
   return sortedBooths;
 }

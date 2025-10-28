@@ -8,10 +8,10 @@ type Layer = 1 | 2 | 3 | 4 | 5;
 // TODO: 最適化の余地あり
 export default function Map() {
   const [nowLayer, setNowLayer] = useState<Layer>(1);
-  const [detailInfo, setDetailInfo] = useState<string>(
+  const [detailInfo] = useState<string>(
     '地図中の文字をクリックするとここに詳細が表示されます。'
   );
-  const [is_highschool, setIs_highSchool] = useState<boolean>(false);
+  const [is_highschool] = useState<boolean>(false);
   const pinchTargetRef = useRef<HTMLDivElement>(null);
 
   const upButtonHandler = () => {

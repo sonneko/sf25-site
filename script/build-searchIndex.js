@@ -21,15 +21,84 @@ function segmentString(str) {
 // 頻出するが検索意図を持たない単語をさらに追加・調整
 const NOISE_TOKENS = [
   // 前回からの追加・調整
-  'undefined', 'の', 'が', 'を', 'に', 'へ', 'と', 'で', 'から', 'より', 'や',
-  'する', 'いる', 'ある', 'ない', 'できる', 'られる', 'なっ', 'な', 'だ', 'ます',
-  'です', 'ますし', 'まし', 'いる', 'れる', 'た', 'て', 'よ', 'ね', 'ぞ', 'さあ',
-  'この', 'その', 'あの', 'どの', 'こと', 'もの', 'とき', 'そう', 'ため', 'など',
-  'これ', 'それ', 'あれ', 'どれ', 'ほか', 'よう', 'どう', 'いう', 'これら', 'そこ',
-  'ここ', 'どこ', 'そこ', 'うち', 'さん', 'たち', 'みな', 'んけうす', 'ー', '。',
+  'undefined',
+  'の',
+  'が',
+  'を',
+  'に',
+  'へ',
+  'と',
+  'で',
+  'から',
+  'より',
+  'や',
+  'する',
+  'いる',
+  'ある',
+  'ない',
+  'できる',
+  'られる',
+  'なっ',
+  'な',
+  'だ',
+  'ます',
+  'です',
+  'ますし',
+  'まし',
+  'いる',
+  'れる',
+  'た',
+  'て',
+  'よ',
+  'ね',
+  'ぞ',
+  'さあ',
+  'この',
+  'その',
+  'あの',
+  'どの',
+  'こと',
+  'もの',
+  'とき',
+  'そう',
+  'ため',
+  'など',
+  'これ',
+  'それ',
+  'あれ',
+  'どれ',
+  'ほか',
+  'よう',
+  'どう',
+  'いう',
+  'これら',
+  'そこ',
+  'ここ',
+  'どこ',
+  'そこ',
+  'うち',
+  'さん',
+  'たち',
+  'みな',
+  'んけうす',
+  'ー',
+  '。',
 
   // 記号類や改行コード、短い接続詞
-  '\n', '\r', ':', '・', '、', '。', ',', '.', '(', ')', '[', ']', '!', '?',
+  '\n',
+  '\r',
+  ':',
+  '・',
+  '、',
+  '。',
+  ',',
+  '.',
+  '(',
+  ')',
+  '[',
+  ']',
+  '!',
+  '?',
 ].map(t => t.toLowerCase());
 
 function isNoise(token) {
@@ -47,57 +116,71 @@ const ids = readFileSync(process.cwd() + '/assets/booths/allIds.txt')
   .split('\n')
   .filter(id => id.trim() !== '');
 
-const booths = ids.map(id => {
-  try {
-    return JSON.parse(
-      readFileSync(process.cwd() + '/assets/booths/' + id + '.json').toString()
-    );
-  } catch (e) {
-    console.error(`Error parsing JSON for booth ID: ${id}`, e);
-    return null;
-  }
-}).filter(booth => booth !== null);
+const booths = ids
+  .map(id => {
+    try {
+      return JSON.parse(
+        readFileSync(
+          process.cwd() + '/assets/booths/' + id + '.json'
+        ).toString()
+      );
+    } catch (e) {
+      console.error(`Error parsing JSON for booth ID: ${id}`, e);
+      return null;
+    }
+  })
+  .filter(booth => booth !== null);
 
-const ret = booths
-  .map(booth => {
-    // 💡 1. ブース名やIDは非常に重要なので、説明文とは分けて、そのままの形でトークン化
-    const boothName = booth.booth_name || '';
-    const description = (booth.short_description || '') + ' ' + (booth.long_description || '');
+const ret = booths.map(booth => {
+  // 💡 1. ブース名やIDは非常に重要なので、説明文とは分けて、そのままの形でトークン化
+  const boothName = booth.booth_name || '';
+  const description =
+    (booth.short_description || '') + ' ' + (booth.long_description || '');
 
-    // 💡 2. ブース名トークンと説明文トークンの生成
-    // ブース名はそのまま一つの重要なトークンとして扱う（TinySegmenterの分割を回避）
-    const nameAsToken = boothName.trim() ? [boothName.trim()] : [];
+  // 💡 2. ブース名トークンと説明文トークンの生成
+  // ブース名はそのまま一つの重要なトークンとして扱う（TinySegmenterの分割を回避）
+  const nameAsToken = boothName.trim() ? [boothName.trim()] : [];
 
-    // 説明文を分割
-    const descTokens = segmentString(description);
+  // 説明文を分割
+  const descTokens = segmentString(description);
 
-    // 💡 3. トークンを結合し、ノイズ除去と大文字小文字の統一
-    const allTokens = [
-      ...nameAsToken, // ブース名を「化学部」のように一つのトークンとしてそのまま保持
-      ...descTokens
-    ]
-      .filter(token => !isNoise(token))
-      .map(token => token.toLowerCase());
+  // 💡 3. トークンを結合し、ノイズ除去と大文字小文字の統一
+  const allTokens = [
+    ...nameAsToken, // ブース名を「化学部」のように一つのトークンとしてそのまま保持
+    ...descTokens,
+  ]
+    .filter(token => !isNoise(token))
+    .map(token => token.toLowerCase());
 
-    // 💡 4. 重複を排除
-    const uniqueTokens = [...new Set(allTokens)];
+  // 💡 4. 重複を排除
+  const uniqueTokens = [...new Set(allTokens)];
 
-    return {
-      booth_id: booth.booth_id,
-      // 💡 5. 並び替え: ブース名に完全一致するトークンを先頭に、次にブースID、その他
-      tokens: uniqueTokens.sort((a, b) => {
-        // 1. ブース名（toLowerCase）と一致するトークンを最優先
-        if (a === boothName.toLowerCase() && b !== boothName.toLowerCase()) return -1;
-        if (a !== boothName.toLowerCase() && b === boothName.toLowerCase()) return 1;
+  return {
+    booth_id: booth.booth_id,
+    // 💡 5. 並び替え: ブース名に完全一致するトークンを先頭に、次にブースID、その他
+    tokens: uniqueTokens.sort((a, b) => {
+      // 1. ブース名（toLowerCase）と一致するトークンを最優先
+      if (a === boothName.toLowerCase() && b !== boothName.toLowerCase())
+        return -1;
+      if (a !== boothName.toLowerCase() && b === boothName.toLowerCase())
+        return 1;
 
-        // 2. ブースID（例: class-m3a）と一致するトークンを次に優先
-        if (a === booth.booth_id.toLowerCase() && b !== booth.booth_id.toLowerCase()) return -1;
-        if (a !== booth.booth_id.toLowerCase() && b === booth.booth_id.toLowerCase()) return 1;
+      // 2. ブースID（例: class-m3a）と一致するトークンを次に優先
+      if (
+        a === booth.booth_id.toLowerCase() &&
+        b !== booth.booth_id.toLowerCase()
+      )
+        return -1;
+      if (
+        a !== booth.booth_id.toLowerCase() &&
+        b === booth.booth_id.toLowerCase()
+      )
+        return 1;
 
-        return 0;
-      })
-    };
-  });
+      return 0;
+    }),
+  };
+});
 
 const json = JSON.stringify(ret);
 
