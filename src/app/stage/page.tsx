@@ -27,22 +27,22 @@ const gym1TimeInfo: {
     color: EventData['color'];
   };
 } = {
-  "grade-1a": { startTime: [9, 15], endTime: [10, 15], color: "red"},
-  "grade-2a": { startTime: [10, 30], endTime: [11, 15], color: "orange"},
-  "volu-15": { startTime: [11, 30], endTime: [11, 52], color: "purple"},
-  "volu-16": { startTime: [11, 55], endTime: [12, 4], color: "blue"},
-  "volu-17": { startTime: [12, 6], endTime: [12, 25], color: "teal"},
-  "volu-18": { startTime: [12, 29], endTime: [12, 38], color: "red"},
-  "volu-20": { startTime: [12, 41], endTime: [12, 56], color: "orange"},
-  "volu-25": { startTime: [13, 1], endTime: [13, 11], color: "purple"},
-  "volu-30": { startTime: [13, 14], endTime: [13, 24], color: "blue"},
-  "volu-22": { startTime: [13, 27], endTime: [13, 39], color: "teal"},
-  "volu-23": { startTime: [13, 42], endTime: [13, 57], color: "red"},
-  "volu-24": { startTime: [14, 0], endTime: [14, 14], color: "orange"},
-  "volu-28": { startTime: [14, 17], endTime: [14, 31], color: "purple"},
-  "volu-26": { startTime: [14, 34], endTime: [14, 46], color: "blue"},
-  "volu-27": { startTime: [14, 49], endTime: [15, 8], color: "teal"},
-  "volu-29": { startTime: [15, 11], endTime: [15, 27], color: "red"},
+  'grade-1a': { startTime: [9, 15], endTime: [10, 15], color: 'red' },
+  'grade-2a': { startTime: [10, 30], endTime: [11, 15], color: 'orange' },
+  'volu-15': { startTime: [11, 30], endTime: [11, 52], color: 'purple' },
+  'volu-16': { startTime: [11, 55], endTime: [12, 4], color: 'blue' },
+  'volu-17': { startTime: [12, 6], endTime: [12, 25], color: 'teal' },
+  'volu-18': { startTime: [12, 29], endTime: [12, 38], color: 'red' },
+  'volu-20': { startTime: [12, 41], endTime: [12, 56], color: 'orange' },
+  'volu-25': { startTime: [13, 1], endTime: [13, 11], color: 'purple' },
+  'volu-30': { startTime: [13, 14], endTime: [13, 24], color: 'blue' },
+  'volu-22': { startTime: [13, 27], endTime: [13, 39], color: 'teal' },
+  'volu-23': { startTime: [13, 42], endTime: [13, 57], color: 'red' },
+  'volu-24': { startTime: [14, 0], endTime: [14, 14], color: 'orange' },
+  'volu-28': { startTime: [14, 17], endTime: [14, 31], color: 'purple' },
+  'volu-26': { startTime: [14, 34], endTime: [14, 46], color: 'blue' },
+  'volu-27': { startTime: [14, 49], endTime: [15, 8], color: 'teal' },
+  'volu-29': { startTime: [15, 11], endTime: [15, 27], color: 'red' },
 };
 
 export default async function StagePage() {

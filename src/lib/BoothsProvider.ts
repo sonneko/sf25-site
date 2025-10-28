@@ -4,7 +4,7 @@ import { boothSchema } from '../types/booth';
 let booths: Booth[] | null = null;
 
 async function getBooths(): Promise<Booth[]> {
-  // if (booths !== null) return booths;
+  if (booths !== null) return booths;
 
   if (process.title !== 'browser') {
     // Node.js environment

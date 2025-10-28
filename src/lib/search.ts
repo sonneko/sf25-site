@@ -2,7 +2,6 @@
 import type { Booth } from '../types/booth';
 import { type SearchIndex, searchIndexSchema } from '../types/searchIndex';
 import TinySegmenter from 'tiny-segmenter';
-import { getBoothsById } from './BoothsProvider';
 
 let searchIndex: SearchIndex | null = null;
 const tinySegmenter = new TinySegmenter();
@@ -15,23 +14,23 @@ function levenshteinDistance(str1: string, str2: string): number {
   const dp = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
 
   // 初期化
-  // @ts-expect-error　エラハンドリングだるい
+  // @ts-expect-error エラハンドリングだるい
   for (let i = 0; i <= len1; i++) dp[i][0] = i;
-  // @ts-expect-error　エラハンドリングだるい
+  // @ts-expect-error エラハンドリングだるい
   for (let j = 0; j <= len2; j++) dp[0][j] = j;
 
   // DPテーブルを埋める
   for (let i = 1; i <= len1; i++) {
     for (let j = 1; j <= len2; j++) {
       if (str1[i - 1] === str2[j - 1]) {
-        // @ts-expect-error　エラハンドリングだるい
-        dp[i][j] = dp[i - 1][j - 1]; 
+        // @ts-expect-error エラハンドリングだるい
+        dp[i][j] = dp[i - 1][j - 1];
       } else {
         // @ts-expect-error エラハンドリングだるい
         dp[i][j] = Math.min(
-          // @ts-expect-error　エラハンドリングだるい
+          // @ts-expect-error エラハンドリングだるい
           dp[i - 1][j] + 1, // 削除
-          // @ts-expect-error　エラハンドリングだるい
+          // @ts-expect-error エラハンドリングだるい
           dp[i][j - 1] + 1, // 挿入
           // @ts-expect-error エラハンドリングだるい
           dp[i - 1][j - 1] + 1 // 置換
@@ -41,7 +40,7 @@ function levenshteinDistance(str1: string, str2: string): number {
   }
 
   // 最終的な編集距離を返す
-  // @ts-expect-error　エラハンドリングだるい
+  // @ts-expect-error エラハンドリングだるい
   return dp[len1][len2];
 }
 
@@ -76,7 +75,7 @@ function segment(input: string): string[] {
   return tinySegmenter.segment(input);
 }
 
-export default async function search(keyword: string): Promise<Booth[]> {
+export default async function useSearch(keyword: string): Promise<Booth[]> {
   const searchIndex = await getSearchIndex();
   const segmentedKeywords = segment(keyword);
   const result = segmentedKeywords.map(word => {
@@ -89,17 +88,23 @@ export default async function search(keyword: string): Promise<Booth[]> {
   });
   const sumDistance: number[] = Array(searchIndex.length).fill(0);
   result.forEach(eachWordResult => {
-    // @ts-expect-error
+    // @ts-expect-error エラーハンドリングだるい
     eachWordResult.forEach((result, index) => (sumDistance[index] += result));
   });
-  const idList = sumDistance
-    .map((distance, index) => {
-      // @ts-expect-error
-      const boothId = searchIndex[index].booth_id;
-      return { id: boothId, distance };
-    })
-    .sort((a, b) => b.distance - a.distance)
-    .map(booth => booth.id);
+  // const idList = sumDistance
+  //   .map((distance, index) => {
+  //     // @ts-expect-error エラーハンドリングだるい
+  //     const boothId = searchIndex[index].booth_id;
+  //     return { id: boothId, distance };
+  //   })
+  //   .sort((a, b) => b.distance - a.distance)
+  //   .map(booth => booth.id);
 
-  return await Promise.all(idList.map(async id => await getBoothsById(id) as Booth));
+  // const booths = useBooths().data;
+
+  // return await Promise.all(
+  //   idList.map(async id => booths.find(booth => booth.booth_id === ) as Booth)
+  // );
+
+  return [];
 }

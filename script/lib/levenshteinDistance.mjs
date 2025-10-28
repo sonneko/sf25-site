@@ -1,4 +1,4 @@
-module.export = function levenshteinDistance(str1, str2) {
+export default function levenshteinDistance(str1, str2) {
   const len1 = str1.length;
   const len2 = str2.length;
 
@@ -25,4 +25,4 @@ module.export = function levenshteinDistance(str1, str2) {
   }
 
   return dp[len1][len2];
-};
+}
