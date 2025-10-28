@@ -1,5 +1,5 @@
 'use client';
-import type { Booth } from '../types/booth';
+import type { Booth, BoothTag } from '../types/booth';
 import { type SearchIndex, searchIndexSchema } from '../types/searchIndex';
 import TinySegmenter from 'tiny-segmenter';
 import { getBooths } from './clientBoothFetch';
@@ -82,13 +82,19 @@ function segment(input: string): string[] {
 
 // --- ⭐️ 検索ロジックを精度向上のために完全に書き換えました ⭐️ ---
 
-export default async function useSearch(keyword: string): Promise<Booth[]> {
+export default async function useSearch(keyword: string, selectedTags: BoothTag[]): Promise<Booth[]> {
   const searchIndex = await getSearchIndex();
   const segmentedKeywords = segment(keyword);
 
   // キーワードがない場合は空の配列を返すか、全ブースを返すか選択可能ですが、今回は空で。
   if (segmentedKeywords.length === 0) {
-    return [];
+    return (await getBooths()).filter(booth => {
+      const hasTagsBooths = selectedTags.map(selectedTag =>
+        booth.tags.includes(selectedTag)
+      );
+      if (hasTagsBooths.length === 0) return false;
+      return hasTagsBooths.reduce((a, b) => a && b)
+    });
   }
 
   // 各ブースのスコアを保持する配列。インデックスの順序に対応。
@@ -148,5 +154,12 @@ export default async function useSearch(keyword: string): Promise<Booth[]> {
     .map(id => allBooths.find(booth => booth.booth_id === id))
     .filter((booth): booth is Booth => booth !== undefined);
 
-  return sortedBooths;
+
+  return sortedBooths.filter(booth => {
+    const hasTagBooths = selectedTags.map(selectedTag =>
+      booth.tags.includes(selectedTag)
+    );
+    if (hasTagBooths.length === 0) return false;
+    return hasTagBooths.reduce((a, b) => a && b);
+  });
 }
