@@ -1,0 +1,41 @@
+name: Next.js Static Export (gh-pages)
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    env:
+      NEXT_PUBLIC_ENV: "product"
+
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.jsのセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 依存関係のインストール
+        run: npm install
+
+      - name: Next.jsの静的サイトビルド
+        run: npm run build
+
+      - name: GitHub Pagesへのデプロイ
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          commit_message: ${{ github.event.head_commit.message }} [deployed by GitHub Actions]
+
+
+          
+
