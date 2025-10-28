@@ -1,13 +1,13 @@
 .container {
-  width: 85vw;
+  width: 95vw;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .card_body {
   padding: 20px;
-  margin: 20px;
+  margin: 40px;
   display: flex;
-  background-color: aqua;
   border-radius: 50px;
 }
 
