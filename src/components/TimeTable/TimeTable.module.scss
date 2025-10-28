@@ -13,6 +13,8 @@ $time-axis-width: 80px;
   border: 1px solid $grid-line;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90vw;
+  margin: 5em auto;
 }
 
 /* 時間軸 */
@@ -109,6 +111,14 @@ $time-axis-width: 80px;
 .eventTime {
   font-size: 0.8em;
   opacity: 0.9;
+}
+
+.eventIcon {
+  float: right;
+  margin-top: -3.5em;
+  transform: scale(0.8);
+  max-width: 300px;
+  border-radius: 4px;
 }
 
 /* 色クラス */

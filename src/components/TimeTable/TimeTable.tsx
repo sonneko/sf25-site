@@ -95,15 +95,21 @@ export const Timetable = ({
         const displayTime = `${minutesToDisplayTime(timeToMinutes(event.startTime))} - ${minutesToDisplayTime(timeToMinutes(event.endTime))}`;
 
         return (
-          <div
+          <a
             key={event.id}
             className={`${styles.eventBlock} ${colorClass}`}
             style={positionStyles}
             title={`${event.name} (${displayTime})`}
+            href={`/booth/${event.id.split('_')[0]}`}
           >
             <div className={styles.eventTitle}>{event.name}</div>
             <div className={styles.eventTime}>{displayTime}</div>
-          </div>
+            <img
+              className={styles.eventIcon}
+              src={`booths-icon/${event.id.split('_')[0]}.png`}
+              width={positionStyles.height}
+            />
+          </a>
         );
       });
   };
