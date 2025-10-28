@@ -12,25 +12,50 @@
         * {
             font-family: sans-serif;
             color: #fff;
+            box-sizing: border-box; /* レイアウトを扱いやすくするために追加 */
         }
 
         body {
             margin: 0;
+            overflow: hidden; /* スクロールバーが表示されないように */
         }
 
         .container {
             background-color: #333;
             display: flex;
-            flex-direction: column;
-            justify-content: space-around;
             width: 100vw;
             height: 100vh;
         }
 
+        .logo_area {
+            display: flex;
+            align-items: center; /* 垂直方向の中央揃え */
+            justify-content: center; /* 水平方向の中央揃え */
+            width: 20vw; /* ロゴエリアの幅 */
+            height: 100vh; /* ロゴエリアの高さを画面いっぱいに */
+            background-color: #222; /* ロゴエリアの背景色（区別のため） */
+        }
+
+        .logo img {
+            max-width: 100%; /* ロゴ画像がエリアからはみ出さないように */
+            height: auto;
+            display: block;
+        }
+
+        .content_area {
+            width: 80vw; /* コンテンツエリアの幅 */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 5rem; /* コンテンツ内の余白 */
+        }
+
         .up {
             display: flex;
-            justify-content: space-around;
-            margin: 5rem 0;
+            flex-direction: column; /* 縦並びにする */
+            align-items: flex-end; /* 右端に寄せる */
+            margin-bottom: 5rem;
         }
 
         .title {
@@ -38,48 +63,220 @@
             margin: 0;
             font-size: 10vw;
             color: #58ff48;
+            text-align: right;
         }
 
         .data_and_time {
             font-family: serif;
             font-size: 4vw;
+            text-align: right;
+            margin-top: 1rem;
         }
 
         .down {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-end; /* 右寄せ */
         }
 
         .down_right {
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            align-items: flex-end; /* 右端に寄せる */
         }
 
         .new {
-            margin-left: 1rem;
+            margin-left: 1rem; /* 不要になる可能性が高いですが念のため残しています */
+        }
+
+        .news {
+            text-align: right;
+            margin-top: 2rem;
+        }
+
+        .down_right a {
+            color: #58ff48;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .down_right h3 {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="up">
-            <h1 class="title">SF 2025</h1>
-            <div class="data_and_time">
-                DATE: 11/3(月)<br />
-                TIME: 9時〜3時30分
+        <div class="logo_area">
+            <div class="logo">
+                <img src="./logo.png" alt="大阪星光学院ロゴ" width="200">
             </div>
         </div>
-        <div class="down">
+
+        <div class="content_area">
+            <div class="up">
+                <h1 class="title">SF 2025</h1>
+                <div class="data_and_time">
+                    DATE: 11/3(月)<br />
+                    TIME: 9時〜3時30分
+                </div>
+            </div><!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大阪星光学院スクールフェアSF2025公式Webサイト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: sans-serif;
+            color: #fff;
+            box-sizing: border-box; /* レイアウトを扱いやすくするために追加 */
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden; /* スクロールバーが表示されないように */
+        }
+
+        .container {
+            background-color: #333;
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .logo_area {
+            display: flex;
+            align-items: center; /* 垂直方向の中央揃え */
+            justify-content: center; /* 水平方向の中央揃え */
+            width: 20vw; /* ロゴエリアの幅 */
+            height: 100vh; /* ロゴエリアの高さを画面いっぱいに */
+            background-color: #222; /* ロゴエリアの背景色（区別のため） */
+        }
+
+        .logo img {
+            max-width: 100%; /* ロゴ画像がエリアからはみ出さないように */
+            height: auto;
+            display: block;
+        }
+
+        .content_area {
+            width: 80vw; /* コンテンツエリアの幅 */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 5rem; /* コンテンツ内の余白 */
+        }
+
+        .up {
+            display: flex;
+            flex-direction: column; /* 縦並びにする */
+            align-items: flex-end; /* 右端に寄せる */
+            margin-bottom: 5rem;
+        }
+
+        .title {
+            font-family: "Orbitron";
+            margin: 0;
+            font-size: 10vw;
+            color: #58ff48;
+            text-align: right;
+        }
+
+        .data_and_time {
+            font-family: serif;
+            font-size: 4vw;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .down {
+            display: flex;
+            justify-content: flex-end; /* 右寄せ */
+        }
+
+        .down_right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* 右端に寄せる */
+        }
+
+        .new {
+            margin-left: 1rem;
+        }
+
+        .news {
+            text-align: right;
+            margin-top: 2rem;
+        }
+
+        .down_right a {
+            color: #58ff48;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        /* ニュースの見出し (News) のフォントサイズを大きくする */
+        .news h3 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem; /* 大きく設定 */
+            color: #fff; /* 見出しの色 */
+        }
+
+        /* ニュースの本文のフォントサイズを大きくする */
+        .news p {
+            font-size: 1.5rem; /* 大きく設定 */
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- ロゴエリア -->
+        <div class="logo_area">
             <div class="logo">
-                <img src="./logo.png" width="200">
+                <!-- ロゴ画像は、指定されたパスに存在するものと仮定します -->
+                <img src="./logo.png" alt="大阪星光学院ロゴ" width="200">
             </div>
-            <div class="down_right">
-                <a href="./pamph.pdf">パンフレットをダウンロードする</a>
-                <div class="news">
-                    <h3>News</h3>
-                    <p>10/29 7:00 臨時Webサイト公開</p>
+        </div>
+
+        <!-- タイトルとその他のコンテンツエリア -->
+        <div class="content_area">
+            <div class="up">
+                <h1 class="title">SF 2025</h1>
+                <div class="data_and_time">
+                    DATE: 11/3(月)<br />
+                    TIME: 9時〜3時30分
+                </div>
+            </div>
+            <div class="down">
+                <div class="down_right">
+                    <a href="./pamph.pdf">パンフレットをダウンロードする</a>
+                    <div class="news">
+                        <h3>News</h3>
+                        <p>10/29 7:00 臨時Webサイト公開</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+            <div class="down">
+                <div class="down_right">
+                    <a href="./pamph.pdf">パンフレットをダウンロードする</a>
+                    <div class="news">
+                        <h3>News</h3>
+                        <p>10/29 7:00 臨時Webサイト公開</p>
+                    </div>
                 </div>
             </div>
         </div>
