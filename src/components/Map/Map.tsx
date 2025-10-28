@@ -53,7 +53,9 @@ export default function Map() {
           <div
             className={styles.button_block}
             onClick={() => setIs_highschool(!is_highschool)}
-          >{is_highschool ? "高校" : "中学"}</div>
+          >
+            {is_highschool ? '高校' : '中学'}
+          </div>
         </div>
         <div className={styles.map}>
           <pinch-zoom ref={pinchTargetRef} className={styles.map_svg}>

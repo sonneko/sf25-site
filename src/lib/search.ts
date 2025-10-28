@@ -82,7 +82,10 @@ function segment(input: string): string[] {
 
 // --- ⭐️ 検索ロジックを精度向上のために完全に書き換えました ⭐️ ---
 
-export default async function useSearch(keyword: string, selectedTags: BoothTag[]): Promise<Booth[]> {
+export default async function useSearch(
+  keyword: string,
+  selectedTags: BoothTag[]
+): Promise<Booth[]> {
   const searchIndex = await getSearchIndex();
   const segmentedKeywords = segment(keyword);
 
@@ -93,7 +96,7 @@ export default async function useSearch(keyword: string, selectedTags: BoothTag[
         booth.tags.includes(selectedTag)
       );
       if (hasTagsBooths.length === 0) return false;
-      return hasTagsBooths.reduce((a, b) => a && b)
+      return hasTagsBooths.reduce((a, b) => a && b);
     });
   }
 
@@ -153,7 +156,6 @@ export default async function useSearch(keyword: string, selectedTags: BoothTag[
   const sortedBooths = idList
     .map(id => allBooths.find(booth => booth.booth_id === id))
     .filter((booth): booth is Booth => booth !== undefined);
-
 
   return sortedBooths.filter(booth => {
     const hasTagBooths = selectedTags.map(selectedTag =>

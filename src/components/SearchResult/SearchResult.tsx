@@ -11,9 +11,7 @@ export default function SearchResult({ data }: { data: Booth[] }) {
             検索結果：見つかりませんでした。キーワードを変えてもう一度お試しください。
           </>
         ) : (
-          <>
-            検索結果：{data.length}件見つかりました。
-          </>
+          <>検索結果：{data.length}件見つかりました。</>
         )}
         {data.map((each, index) => (
           <BoothCard data={each} key={index}></BoothCard>

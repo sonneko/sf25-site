@@ -1,16 +1,16 @@
 .button {
-    padding: 8px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .container {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 .buttons {
-    display: flex;
-    flex-wrap: flap;
-    gap: 8px;   
+  display: flex;
+  flex-wrap: flap;
+  gap: 8px;
 }

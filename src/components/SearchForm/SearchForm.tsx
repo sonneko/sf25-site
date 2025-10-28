@@ -4,7 +4,8 @@ import styles from './SearchForm.module.scss';
 import type { MouseEventHandler } from 'react';
 import { useState, useCallback } from 'react';
 import SearchResult from '../SearchResult/SearchResult';
-import { BoothTag, type Booth } from '../../types/booth';
+import type { BoothTag } from '../../types/booth';
+import { type Booth } from '../../types/booth';
 
 import search from '../../lib/search';
 import TagSlecter from '../TagSelecter/TagSelecter';
@@ -14,16 +15,13 @@ export default function SearchForm() {
   const [searchResult, setSearchResult] = useState<Booth[] | null>(null);
   const [selectedTags, setSelectedTags] = useState<BoothTag[]>([]);
 
-  const searchHandler: MouseEventHandler<HTMLDivElement> = useCallback(
-    () => {
-      setSearchInputValue('');
-      setSearchResult(null);
-      search(searchInputValue, selectedTags).then(result => {
-        setSearchResult(result);
-      });
-    },
-    [searchInputValue]
-  );
+  const searchHandler: MouseEventHandler<HTMLDivElement> = useCallback(() => {
+    setSearchInputValue('');
+    setSearchResult(null);
+    search(searchInputValue, selectedTags).then(result => {
+      setSearchResult(result);
+    });
+  }, [searchInputValue]);
 
   return (
     <>
