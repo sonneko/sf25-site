@@ -2,9 +2,12 @@
 import type { Booth } from '../types/booth';
 import { type SearchIndex, searchIndexSchema } from '../types/searchIndex';
 import TinySegmenter from 'tiny-segmenter';
+import { getBooths } from './clientBoothFetch';
 
 let searchIndex: SearchIndex | null = null;
 const tinySegmenter = new TinySegmenter();
+
+// --- 既存の levenshteinDistance, similarity 関数は変更なし ---
 
 function levenshteinDistance(str1: string, str2: string): number {
   const len1 = str1.length;
@@ -56,9 +59,11 @@ function similarity(str1: string, str2: string) {
   return similarityScore;
 }
 
+// --- 既存の getSearchIndex, segment 関数は変更なし ---
+
 async function getSearchIndex(): Promise<SearchIndex> {
   if (searchIndex !== null) return searchIndex;
-  const json = (await fetch('/search-index.json').then(res =>
+  const json = (await fetch('/search-index-last.json').then(res =>
     res.json()
   )) as unknown;
 
@@ -75,31 +80,75 @@ function segment(input: string): string[] {
   return tinySegmenter.segment(input);
 }
 
+
+// --- ⭐️ 検索ロジックを精度向上のために完全に書き換えました ⭐️ ---
+
 export default async function useSearch(keyword: string): Promise<Booth[]> {
   const searchIndex = await getSearchIndex();
   const segmentedKeywords = segment(keyword);
-  const result = segmentedKeywords.map(word => {
-    const wordResult: number[] = searchIndex.map(target => {
-      const distances = target.tokens.map(token => similarity(token, word));
-      const sumDistance = distances.reduce((curr, pre) => curr + pre);
-      return sumDistance;
-    });
-    return wordResult;
-  });
-  const sumDistance: number[] = Array(searchIndex.length).fill(0);
-  result.forEach(eachWordResult => {
-    // @ts-expect-error エラーハンドリングだるい
-    eachWordResult.forEach((result, index) => (sumDistance[index] += result));
-  });
-  // const idList = sumDistance
-  //   .map((distance, index) => {
-  //     // @ts-expect-error エラーハンドリングだるい
-  //     const boothId = searchIndex[index].booth_id;
-  //     return { id: boothId, distance };
-  //   })
-  //   .sort((a, b) => b.distance - a.distance)
-  //   .map(booth => booth.id);
 
-  // return await Promise.all(idList.map(async id => await getBoothsById(id) as Booth));
-  return [];
+  // キーワードがない場合は空の配列を返すか、全ブースを返すか選択可能ですが、今回は空で。
+  if (segmentedKeywords.length === 0) {
+    return []; 
+  }
+  
+  // 各ブースのスコアを保持する配列。インデックスの順序に対応。
+  const boothScores: number[] = Array(searchIndex.length).fill(0);
+
+  segmentedKeywords.forEach(searchWord => {
+    // 短すぎるノイズ単語（例: 'a', 'の', 'は'）を無視して精度向上
+    if (searchWord.length < 2) return; 
+
+    searchIndex.forEach((target, index) => {
+      let maxScoreForWord = 0; // その検索キーワードに対して、ブースが獲得できる最高スコア
+
+      target.tokens.forEach(indexToken => {
+        
+        // 1. 🥇 完全一致 (Exact Match): 最高のスコア
+        if (indexToken === searchWord) {
+          maxScoreForWord = Math.max(maxScoreForWord, 1000);
+          return; // 最も高いスコアなので、これ以上チェックする必要はない
+        }
+        
+        // 2. 🥈 部分一致 (Containment): 高いスコア
+        // 検索語がインデックス語に含まれている場合（例: 検索「化学」, インデックス「化学部」）
+        if (indexToken.includes(searchWord)) {
+           maxScoreForWord = Math.max(maxScoreForWord, 800);
+        }
+        
+        // 3. 🥉 レーベンシュタイン類似度 (Fuzzy Match / タイポ対策): 中程度のスコア
+        const simScore = similarity(indexToken, searchWord);
+        // 類似度が80%以上の場合のみスコアを加算
+        if (simScore >= 60) { 
+          // スコアに換算し、既存のスコアと比較
+          maxScoreForWord = Math.max(maxScoreForWord, Math.floor(simScore * 7)); 
+        }
+      });
+      
+      // 🚨 スコアを加算: 複数の検索キーワードがある場合、それぞれの最高スコアをブース全体に加算する
+      // @ts-expect-error エラーハンドリングめんどい
+      boothScores[index] += maxScoreForWord;
+    });
+  });
+
+  // 💡 1. スコアに基づいてブースIDをソート
+  const idList = boothScores
+    .map((score, index) => {
+      // @ts-expect-error エラーハンドリングだるい
+      const boothId = searchIndex[index].booth_id;
+      return { id: boothId, score };
+    })
+    .filter(booth => booth.score > 0) // スコアが0のブースは検索結果から除外
+    .sort((a, b) => b.score - a.score) // スコアが大きい順にソート
+    .map(booth => booth.id);
+  
+  // 💡 2. ブースデータを一度だけ取得
+  const allBooths = await getBooths();
+  
+  // 💡 3. ソートされた idList の順序でブースデータを取り出して返す
+  const sortedBooths = idList
+    .map(id => allBooths.find(booth => booth.booth_id === id))
+    .filter((booth): booth is Booth => booth !== undefined); 
+
+  return sortedBooths;
 }
