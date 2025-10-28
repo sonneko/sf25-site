@@ -78,14 +78,17 @@ export default async function StagePage() {
     )),
   ];
   return (
-    <main style={{ padding: '20px' }}>
+    <>
       <h1>イベントタイムテーブル</h1>
+      <p>
+        場合によって時間が後ろに変動する可能性がございます。ご了承ください。
+      </p>
       <Timetable
         events={events}
         tableStartTime={[9, 0]}
         tableEndTime={[15, 30]}
         pixelPer30Minutes={150}
       />
-    </main>
+    </>
   );
 }
