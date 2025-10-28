@@ -28,14 +28,10 @@ jobs:
       - name: Next.jsの静的サイトビルド
         run: npm run build
 
-      - name: GitHub Pagesへのデプロイ
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          publish_branch: gh-pages
-          commit_message: ${{ github.event.head_commit.message }} [deployed by GitHub Actions]
-
-
-          
-
+      - name: Push to build branch
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: out
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # アクセス権限を持つトークン
