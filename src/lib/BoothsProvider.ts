@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import type { Booth } from '../types/booth';
 import { boothSchema } from '../types/booth';
 
@@ -6,6 +5,8 @@ let booths: Booth[] | null = null;
 
 function getBooths(): Booth[] {
   if (booths !== null) return booths;
+
+  const { readFileSync } = import("fs");
 
   const ids = readFileSync(
     process.cwd() + '/assets/booths/allIds.txt',
