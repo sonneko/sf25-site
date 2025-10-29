@@ -9,66 +9,78 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     <style>
+        /* グローバルな設定 */
         * {
             font-family: sans-serif;
             color: #fff;
-            box-sizing: border-box; /* レイアウトを扱いやすくするために追加 */
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
+            background-color: #333; /* bodyにも背景色を設定して、画面全体をカバー */
         }
 
+        /* コンテナ（PC版: Flexで横並び） */
         .container {
             background-color: #333;
             display: flex;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh; /* 縦長コンテンツ対応のためheight: 100vhから変更 */
         }
 
+        /* ロゴエリア */
         .logo_area {
             display: flex;
-            align-items: center; /* 垂直方向の中央揃え */
-            justify-content: center; /* 水平方向の中央揃え */
-            width: 30vw; /* ロゴエリアの幅 */
-            height: 100vh; /* ロゴエリアの高さを画面いっぱいに */
-            background-color: #222; /* ロゴエリアの背景色（区別のため） */
+            align-items: center;
+            justify-content: center;
+            width: 30vw;
+            min-height: 100vh; /* コンテナと同様にmin-heightに変更 */
+            background-color: #222;
+            padding: 2rem; /* パディングを追加 */
         }
 
         .logo img {
-            max-width: 100%; /* ロゴ画像がエリアからはみ出さないように */
+            max-width: 100%;
             height: auto;
             display: block;
+            /* 縦長ロゴが画面からはみ出さないように最大高さを設定 */
+            max-height: 80vh; 
         }
 
+        /* コンテンツエリア */
         .content_area {
-            width: 70vw; /* コンテンツエリアの幅 */
-            height: 100vh;
+            width: 70vw;
+            min-height: 100vh; /* コンテナと同様にmin-heightに変更 */
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            padding: 5rem; /* コンテンツ内の余白 */
+            padding: 5rem;
         }
 
+        /* 上部エリア */
         .up {
             display: flex;
-            flex-direction: column; /* 縦並びにする */
+            flex-direction: column;
             margin-bottom: 5rem;
         }
 
+        /* タイトル */
         .title {
-            font-family: "Orbitron";
+            font-family: "Orbitron", sans-serif;
             margin: 0;
             font-size: 10vw;
             color: #58ff48;
         }
 
+        /* 日付と時間 */
         .data_and_time {
             font-family: serif;
             font-size: 4vw;
             margin-top: 1rem;
         }
 
+        /* 下部エリア */
         .down {
             display: flex;
             justify-content: space-between;
@@ -77,52 +89,114 @@
         .down_right {
             display: flex;
             flex-direction: column;
+            /* PC版では左側の余白を考慮して調整 */
+            width: 100%; 
         }
-
-        .new {
-            margin-left: 1rem;
-        }
-
-        .news {
-            text-align: left;
-            margin-top: 2rem;
-        }
-
+        
+        /* ダウンロードリンク */
         .down_right a {
             color: #58ff48;
             text-decoration: none;
             font-size: 1.5rem;
             text-decoration: underline;
+            word-break: break-word; /* 長いテキストがはみ出さないように */
         }
 
-        /* ニュースの見出し (News) のフォントサイズを大きくする */
+        /* ニュースセクション */
+        .news {
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        /* ニュースの見出し (News) */
         .news h3 {
             margin-bottom: 0.5rem;
-            font-size: 2.5rem; /* 大きく設定 */
-            color: #fff; /* 見出しの色 */
+            font-size: 2.5rem;
+            color: #fff;
             font-weight: normal;
         }
 
-        /* ニュースの本文のフォントサイズを大きくする */
+        /* ニュースの本文 */
         .news p {
-            font-size: 1.5rem; /* 大きく設定 */
+            font-size: 1.5rem;
             margin: 0;
             margin-left: 2em;
+        }
+
+        /* --- モバイル対応（メディアクエリ） --- */
+        @media (max-width: 768px) {
+            
+            .container {
+                flex-direction: column; /* 縦並びに変更 */
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .logo_area {
+                width: 100vw; /* 幅を画面いっぱいに */
+                height: auto;
+                min-height: auto;
+                padding: 3rem 1rem; /* パディングを調整 */
+                order: 1; /* 縦並びにしたときにロゴを上に配置（任意） */
+            }
+
+            .logo img {
+                max-width: 80vw; /* モバイルでは横幅も制限 */
+                max-height: 40vh; /* 縦長ロゴが画面を占領しすぎないよう高さを制限 */
+            }
+
+            .content_area {
+                width: 100vw; /* 幅を画面いっぱいに */
+                height: auto;
+                min-height: auto;
+                padding: 2rem 1rem; /* パディングを調整 */
+                order: 2; /* 縦並びにしたときにコンテンツを下へ配置 */
+            }
+
+            .up {
+                margin-bottom: 2rem; /* 余白を調整 */
+            }
+
+            .title {
+                font-size: 15vw; /* タイトルを少し大きく */
+            }
+
+            .data_and_time {
+                font-size: 6vw; /* 日時を調整 */
+                margin-top: 0.5rem;
+            }
+
+            .down {
+                flex-direction: column; /* 縦並びに変更 */
+            }
+            
+            .down_right {
+                /* モバイルでは要素が一つしかないので特に調整なし */
+            }
+
+            .down_right a {
+                font-size: 1.2rem;
+            }
+
+            .news h3 {
+                font-size: 2rem;
+            }
+
+            .news p {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <!-- ロゴエリア -->
         <div class="logo_area">
             <div class="logo">
-                <!-- ロゴ画像は、指定されたパスに存在するものと仮定します -->
                 <img src="./logo.png" alt="大阪星光学院ロゴ" width="380">
             </div>
         </div>
 
-        <!-- タイトルとその他のコンテンツエリア -->
         <div class="content_area">
             <div class="up">
                 <h1 class="title">SF 2025</h1>
@@ -143,5 +217,5 @@
         </div>
     </div>
 </body>
- 
+
 </html>
