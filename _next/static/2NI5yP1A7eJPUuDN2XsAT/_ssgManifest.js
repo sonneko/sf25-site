@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fbooth\u002F[booth_id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
