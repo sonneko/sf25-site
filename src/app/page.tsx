@@ -42,6 +42,9 @@ export default function HomePage() {
         </InfoSection>
         <Access />
       </div>
+      <div className={styles.logo_box}>
+        <img src='/icon/sf-logo-color.svg' width={400} />
+      </div>
     </>
   );
 }

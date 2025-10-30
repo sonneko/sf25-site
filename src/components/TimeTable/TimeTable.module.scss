@@ -23,7 +23,9 @@ $tab-background: #f8f8f8;
 .stageTabs {
   display: flex;
   border-bottom: 1px solid $grid-line;
+  border-left: 1px solid $grid-line;
   background-color: $tab-background;
+  margin-left: $time-axis-width;
 }
 
 .tabButton {

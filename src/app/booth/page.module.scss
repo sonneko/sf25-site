@@ -18,11 +18,13 @@
   }
   .list {
     position: sticky;
-    top: 5rem;
-    max-height: 80vh;
+    top: 4em;
+    max-height: 75vh;
     width: 200px;
     overflow-y: scroll;
-    border-left: 2px #333 dotted;
+    border: 2px #333 dotted;
+    border-right: none;
+    padding-left: 3px;
     @include mx.media('<tablet') {
       display: none;
     }
