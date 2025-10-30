@@ -2,6 +2,8 @@
 import { useState, useRef } from 'react';
 import styles from './Map.module.scss';
 import 'pinch-zoom-element';
+import ImageMapper from 'react-img-mapper';
+import areasJson from 'assets/map-image-map.json';
 
 type Layer = 1 | 2 | 3 | 4 | 5;
 
@@ -35,33 +37,51 @@ export default function Map() {
     <>
       <div className={styles.map_container}>
         <div>
-          <div className={styles.button_block}>{nowLayer}階</div>
+          <div className={`${styles.layer_display} ${styles.button_block}`}>
+            {nowLayer}階
+          </div>
           <button
             className={`${styles.upButton} ${styles.button_block}`}
             onClick={upButtonHandler}
             disabled={nowLayer === 5}
           >
-            ↑
+            &nbsp;↑&nbsp;
           </button>
           <button
             className={`${styles.downButton} ${styles.button_block}`}
             onClick={downButtonHandler}
             disabled={nowLayer === 1}
           >
-            ↓
+            &nbsp;↓&nbsp;
           </button>
-          <div
+          <button
             className={styles.button_block}
             onClick={() => setIs_highschool(!is_highschool)}
+            disabled={nowLayer === 1 || nowLayer === 5}
           >
-            {is_highschool ? '高校' : '中学'}
-          </div>
+            {!(nowLayer === 1 || nowLayer === 5) ? (
+              is_highschool ? (
+                '高校'
+              ) : (
+                '中学'
+              )
+            ) : (
+              <>両方</>
+            )}
+          </button>
         </div>
         <div className={styles.map}>
           <pinch-zoom ref={pinchTargetRef} className={styles.map_svg}>
-            <img
+            <ImageMapper
               src={`/map/${is_highschool ? 'h' : 'm'}f${nowLayer}.jpeg`}
-              width={700}
+              name='map'
+              responsive={false}
+              areas={areasJson.filter(
+                area =>
+                  area.school === (is_highschool ? 'h' : 'm') &&
+                  area.floor === nowLayer
+              )}
+              onClick={id => alert(id.id)}
             />
           </pinch-zoom>
           <p className={styles.map_ui}>ピンチアウトで拡大縮小できます</p>
