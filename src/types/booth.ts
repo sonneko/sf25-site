@@ -10,7 +10,18 @@ export const boothTagSchema = z.enum([
   'store',
   'magazine',
 ]);
-export type Boothtag = z.infer<typeof boothTagSchema>;
+export type BoothTag = z.infer<typeof boothTagSchema>;
+
+export const BOOTH_TAGS = [
+  'game/experience',
+  'attraction',
+  'food',
+  'exhibition',
+  'performance',
+  'movie',
+  'store',
+  'magazine',
+] as const;
 
 export const boothColorSchema = z.enum([
   'red',

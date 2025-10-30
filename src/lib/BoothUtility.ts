@@ -1,11 +1,11 @@
-import type { Boothtag } from '../types/booth';
+import type { BoothTag } from '../types/booth';
 
 /**
  * tag_idを日本語表記に変換する
  * @param tagId tag_id
  * @returns 変換後の文字列
  */
-export function convertBoothTagInfo(tagId: Boothtag): string {
+export function convertBoothTagInfo(tagId: BoothTag): string {
   if (tagId === 'attraction') {
     return 'アトラクション';
   } else if (tagId === 'exhibition') {

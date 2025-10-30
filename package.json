@@ -31,6 +31,7 @@
     "pinch-zoom-element": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-img-mapper": "^2.0.2",
     "server-only": "^0.0.1",
     "tiny-segmenter": "^0.2.0",
     "zod": "^3.25.64",

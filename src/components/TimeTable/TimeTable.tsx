@@ -1,20 +1,20 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import styles from './TimeTable.module.scss';
 import type { EventData, TimetableProps } from './types';
 
 /**
- * [時, 分]のタプルを分に変換するヘルパー関数
- * @param time - [時, 分]のタプル
- * @returns 00:00からの経過分数
+ * @param time
+ * @returns
  */
 const timeToMinutes = (time: [number, number]): number => {
   return time[0] * 60 + time[1];
 };
 
 /**
- * 分を HH:MM 形式の文字列に変換するヘルパー関数
- * @param minutes - 00:00からの経過分数
- * @returns HH:MM 形式の文字列
+ * @param minutes
+ * @returns
  */
 const minutesToDisplayTime = (minutes: number): string => {
   const h = Math.floor(minutes / 60);
@@ -23,26 +23,31 @@ const minutesToDisplayTime = (minutes: number): string => {
 };
 
 /**
- * タイムテーブルのイベントブロックを描画するReactコンポーネント。
- *
- * @param props - TimetableProps
- * @returns タイムテーブルのReact要素
+ * @param props
+ * @returns
  */
-export const Timetable = ({
+export default function Timetable({
   events,
   tableStartTime,
   tableEndTime,
   pixelPer30Minutes = 60,
-}: TimetableProps) => {
+}: TimetableProps) {
+  type StageKey = 'gym1' | 'music';
+  const [selectedStage, setSelectedStage] = useState<StageKey>('gym1'); // 初期値は「講堂」
+
+  const stageLabels: { [key in StageKey]: string } = {
+    gym1: '講堂',
+    music: '音楽室',
+  };
+
   const START_MINUTES = timeToMinutes(tableStartTime);
   const END_MINUTES = timeToMinutes(tableEndTime);
   const TOTAL_DURATION_MINUTES = END_MINUTES - START_MINUTES;
   const TOTAL_HEIGHT = (TOTAL_DURATION_MINUTES / 30) * pixelPer30Minutes;
 
   /**
-   * イベントデータから、そのブロックの top と height スタイルを計算する関数
-   * @param event - EventData オブジェクト
-   * @returns スタイルオブジェクト
+   * @param event
+   returns
    */
   const calculateEventStyles = (event: EventData): React.CSSProperties => {
     const eventStartMinutes = timeToMinutes(event.startTime);
@@ -61,9 +66,6 @@ export const Timetable = ({
     };
   };
 
-  /**
-   * タイムマーカーのリストを生成する関数
-   */
   const renderTimeMarkers = () => {
     const markers = [];
     let currentMinutes = START_MINUTES;
@@ -79,10 +81,7 @@ export const Timetable = ({
     return markers;
   };
 
-  /**
-   * 指定されたステージのイベントブロックをレンダリングする関数
-   */
-  const renderStageEvents = (stage: 'music' | 'gym1') => {
+  const renderStageEvents = (stage: StageKey) => {
     return events
       .filter(event => event.stage === stage)
       .map(event => {
@@ -95,15 +94,16 @@ export const Timetable = ({
         const displayTime = `${minutesToDisplayTime(timeToMinutes(event.startTime))} - ${minutesToDisplayTime(timeToMinutes(event.endTime))}`;
 
         return (
-          <div
+          <a
             key={event.id}
             className={`${styles.eventBlock} ${colorClass}`}
             style={positionStyles}
             title={`${event.name} (${displayTime})`}
+            href={`/booth/${event.id.split('_')[0]}`}
           >
             <div className={styles.eventTitle}>{event.name}</div>
             <div className={styles.eventTime}>{displayTime}</div>
-          </div>
+          </a>
         );
       });
   };
@@ -115,31 +115,37 @@ export const Timetable = ({
         { '--marker-height': `${pixelPer30Minutes}px` } as React.CSSProperties
       }
     >
-      <div className={styles.timeAxis}>{renderTimeMarkers()}</div>
-
-      <div className={styles.stageSchedule}>
-        {/* 講堂 */}
-        <div className={styles.stage}>
-          <div className={styles.stageHeader}>講堂</div>
-          <div
-            className={styles.eventGrid}
-            style={{ height: `${TOTAL_HEIGHT}px` }}
+      <div className={styles.stageTabs}>
+        {(Object.keys(stageLabels) as StageKey[]).map(stageKey => (
+          <button
+            key={stageKey}
+            className={`${styles.tabButton} ${
+              selectedStage === stageKey ? styles.activeTab : ''
+            }`}
+            onClick={() => setSelectedStage(stageKey)}
           >
-            {renderStageEvents('gym1')}
-          </div>
-        </div>
+            {stageLabels[stageKey]}
+          </button>
+        ))}
+      </div>
 
-        {/* 音楽室 */}
-        <div className={styles.stage}>
-          <div className={styles.stageHeader}>音楽室</div>
-          <div
-            className={styles.eventGrid}
-            style={{ height: `${TOTAL_HEIGHT}px` }}
-          >
-            {renderStageEvents('music')}
+      <div className={styles.timetableContent}>
+        <div className={styles.timeAxis}>{renderTimeMarkers()}</div>
+
+        <div className={styles.stageSchedule}>
+          <div className={styles.stage}>
+            <div className={styles.stageHeader}>
+              {stageLabels[selectedStage]}
+            </div>
+            <div
+              className={styles.eventGrid}
+              style={{ height: `${TOTAL_HEIGHT}px` }}
+            >
+              {renderStageEvents(selectedStage)}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}

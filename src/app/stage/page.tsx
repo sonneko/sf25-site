@@ -1,4 +1,4 @@
-import { Timetable } from '@/components/TimeTable/TimeTable';
+import Timetable from '@/components/TimeTable/TimeTable';
 import type { Booth } from '../../types/booth';
 import type { EventData } from '../../components/TimeTable/types';
 import { getAllBooths } from '../../lib/BoothsProvider';
@@ -10,11 +10,11 @@ const musicTimeInfo: {
     color: EventData['color'];
   };
 } = {
-  'club-29_a': { startTime: [9, 0], endTime: [10, 0], color: 'blue' },
-  'club-31_a': { startTime: [10, 0], endTime: [10, 40], color: 'orange' },
-  'volu-19': { startTime: [10, 40], endTime: [11, 0], color: 'purple' },
-  'volu-21': { startTime: [11, 0], endTime: [11, 40], color: 'red' },
-  'club-29_b': { startTime: [11, 40], endTime: [13, 40], color: 'teal' },
+  'club-29_a': { startTime: [9, 0], endTime: [9, 50], color: 'blue' },
+  'club-31_a': { startTime: [10, 0], endTime: [10, 30], color: 'orange' },
+  'volu-19': { startTime: [11, 10], endTime: [11, 40], color: 'purple' },
+  'volu-21': { startTime: [10, 40], endTime: [11, 0], color: 'red' },
+  'club-29_b': { startTime: [11, 40], endTime: [13, 45], color: 'teal' },
   'club-31_b': { startTime: [14, 0], endTime: [14, 30], color: 'blue' },
   'club-30': { startTime: [14, 30], endTime: [15, 0], color: 'orange' },
   'club-29_c': { startTime: [15, 0], endTime: [15, 30], color: 'purple' },
@@ -78,14 +78,17 @@ export default async function StagePage() {
     )),
   ];
   return (
-    <main style={{ padding: '20px' }}>
+    <>
       <h1>イベントタイムテーブル</h1>
+      <p>
+        場合によって時間が後ろに変動する可能性がございます。ご了承ください。
+      </p>
       <Timetable
         events={events}
         tableStartTime={[9, 0]}
         tableEndTime={[15, 30]}
-        pixelPer30Minutes={60}
+        pixelPer30Minutes={150}
       />
-    </main>
+    </>
   );
 }

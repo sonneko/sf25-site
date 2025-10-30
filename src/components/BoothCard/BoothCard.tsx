@@ -53,6 +53,23 @@ export default function BoothCard({
       </>
     );
   } else if (variation === 'small') {
-    return <>unimplemented</>;
+    return (
+      <>
+        <div className={styles.small_container}>
+          <div>
+            <div>
+              <h5>{booth_name}</h5>
+              <p>{group_name}</p>
+              <p>{long_description}</p>
+              <div>
+                {tags.map(convertBoothTagInfo).map(tag => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
   }
 }
