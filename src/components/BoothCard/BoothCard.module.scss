@@ -14,6 +14,8 @@
     border-radius: 20px;
     box-shadow: 10px 10px 0 0 black;
     width: 20vw;
+    aspect-ratio: 1/1;
+    object-fit: contain;
   }
 
   .card_content {
