@@ -15,7 +15,7 @@ export default function SearchForm() {
   const [searchResult, setSearchResult] = useState<Booth[] | null>(null);
   const [selectedTags, setSelectedTags] = useState<BoothTag[]>([]);
 
-  const searchHandler: MouseEventHandler<HTMLDivElement> = () => {
+  const searchHandler: MouseEventHandler<HTMLButtonElement> = () => {
     setSearchResult(null);
     search(searchInputValue, selectedTags).then(result => {
       setSearchResult(result);
