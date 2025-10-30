@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { type BoothTag, BOOTH_TAGS } from '../../types/booth';
 import { convertBoothTagInfo } from '../../lib/BoothUtility';
 import styles from './TagSlecter.module.scss';
+import CheckIcon from './CheckMark';
 
 export default function TagSlecter({
   value,
@@ -45,7 +46,9 @@ export default function TagSlecter({
               }}
               className={styles.button}
             >
-              {convertBoothTagInfo(tag)} {isSelected ? '✅' : ''}
+              {convertBoothTagInfo(tag)} 
+              {/* ✅ の代わりにSVGコンポーネントを条件付きでレンダリング */}
+              {isSelected ? <CheckIcon /> : null}
             </button>
           );
         })}

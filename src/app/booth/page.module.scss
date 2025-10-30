@@ -2,24 +2,25 @@
   text-align: center;
 }
 
-.spacer {
-  margin-top: 10rem;
-}
-
 .container {
   display: flex;
   align-items: flex-start;
-}
+  width: 100%;
+  box-sizing: border-box;
 
-.list {
-  position: sticky;
-  top: 5rem;
-  max-height: 80vh;
-  overflow-y: auto;
-  width: 30%;
-  max-width: 100%;
-}
-
-.contents {
-  width: 75%;
+  .contents {
+    width: calc(100% - 200px);
+    .spacer {
+      margin-top: 0;
+    }
+  }
+  .list {
+    position: sticky;
+    top: 5rem;
+    max-height: 80vh;
+    width: 200px;
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
 }
