@@ -1,5 +1,5 @@
 {
-  "$schema": "../booth-schema.json"
+  "$schema": "../booth-schema.json",
   "booth_id": "volu-21",
   "booth_name": "小島・松村ウルトラバンド",
   "group_name": "小島・松村ウルトラバンド",

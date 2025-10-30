@@ -16,13 +16,18 @@
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "grade-1b",
     "booth_name": "中1バザー",
     "group_name": "中1バザー",
     "place_id": "m1a/m1b",
     "place": "M1B/M1B",
-    "overview": "バザー"
+    "overview": "バザー",
+    "long_description": "中1のバザーは午前と午後の二回販売です。各家庭から集まった掘り出し物がいっぱい！あなたのお気に入りがきっと見つかるはず！",
+    "short_description": "中1のバザーは午前と午後の二回販売です。各家庭から集まった掘り出し物がいっぱい！あなたのお気に入りがきっと見つかるはず！",
+    "color": "random",
+    "has_cm": false,
+    "has_website": false,
+    "tags": ["store"]
   },
   {
     "$schema": "../booth-schema.json",
@@ -671,23 +676,33 @@
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "club-30",
     "booth_name": "合唱部",
     "group_name": "合唱部",
     "place": "音楽室",
     "place_id": "music",
-    "overview": "合唱"
+    "overview": "合唱",
+    "color": "random",
+    "has_cm": false,
+    "has_website": false,
+    "tags": ["performance"],
+    "long_description": "放課後、教室に響く熱唱の声。青春の汗と魂がここにある——奇跡の美声、開演！音楽室でお待ちしております！！！！！！！！",
+    "short_description": "放課後、教室に響く熱唱の声。青春の汗と魂がここにある——奇跡の美声、開演！音楽室でお待ちしております！！！！！！！！"
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "club-31",
     "booth_name": "吹奏楽定期演奏会",
     "group_name": "吹奏楽部",
     "overview": "演奏会",
     "place": "音楽室",
-    "place_id": "music"
+    "place_id": "music",
+    "long_description": "今年は午前がピアノ、午後が合奏となっています。どちらも有名なアニソンやポップスを選曲したので休憩がてらにお越し下さい。",
+    "short_description": "今年は午前がピアノ、午後が合奏となっています。どちらも有名なアニソンやポップスを選曲したので休憩がてらにお越し下さい。",
+    "color": "random",
+    "has_cm": false,
+    "has_website": false,
+    "tags": ["performance"]
   },
   {
     "$schema": "../booth-schema.json",
@@ -781,23 +796,33 @@
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "volu-07",
     "booth_name": "惑惑文藝部～綺談遊戯に集うものたち～",
     "group_name": "文芸部",
     "place_id": "h3e",
     "overview": "短編映画",
-    "place": "H3E"
+    "place": "H3E",
+    "long_description": "中世の劇作家が愛したアナログゲームを開催中！勝てば豪華景品がもらえるかも！？文芸部員が書き下ろした部誌も販売中です！",
+    "short_description": "中世の劇作家が愛したアナログゲームを開催中！勝てば豪華景品がもらえるかも！？文芸部員が書き下ろした部誌も販売中です！",
+    "color": "random",
+    "has_cm": false,
+    "has_website": false,
+    "tags": ["game/experience", "store", "movie", "magazine"]
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "volu-08",
     "booth_name": "サレジオ亭",
     "group_name": "親父の会",
     "overview": "フランクフルト",
     "place_id": "ground",
-    "place": "グラウンド"
+    "place": "グラウンド",
+    "long_description": "父親有志（父親聖書教室）が集結！スクールフェアー伝統『合格フランク！』合格焼印が押されたフランクフルトを販売します。大阪星光学院を志望されている小学生の方、様々な試験にチャレンジされている方の合格祈願もいたしますので是非お越しください！",
+    "short_description": "在校生の父親有志により結成した「親父の会」星光名物「合格フランク」を販売します。開いている午前中がおすすめです！",
+    "has_website": false,
+    "has_cm": false,
+    "color": "random",
+    "tags": ["food"]
   },
   {
     "$schema": "../booth-schema.json",
@@ -816,13 +841,18 @@
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "volu-10",
     "booth_name": "書道・美術展示",
     "group_name": "書道・美術展示",
     "overview": "作品展示",
     "place_id": "m1c/m1d",
-    "place": "M1C/M1D"
+    "place": "M1C/M1D",
+    "short_description": "中学1年生の書道作品展示及び中学生の美術作品展示、その他各教科で作成した作品の展示を行っています。是非ご覧ください。",
+    "long_description": "中学1年生の書道作品展示及び中学生の美術作品展示、その他各教科で作成した作品の展示を行っています。是非ご覧ください",
+    "color": "random",
+    "has_cm": false,
+    "has_website": false,
+    "tags": ["exhibition"]
   },
   {
     "$schema": "../booth-schema.json",
@@ -946,8 +976,13 @@
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
+    "color": "red",
     "booth_id": "volu-19",
+    "long_description": "バイオリンを2人で演奏します！演奏する曲は2つのバイオリンのための協奏曲です。息ぴったりの演奏をぜひ聴きに来てください！まるで会話しているかのように聞こえる、バイオリンの掛け合いの部分が最高の聞きどころです。",
+    "short_description": "バイオリンを2人で演奏します！息ぴったりの演奏をぜひ聴きに来てください！弾く曲は、二つのバイオリンのための協奏曲です。",
+    "tags": ["performance"],
+    "has_website": false,
+    "has_cm": false,
     "booth_name": "Violingual",
     "group_name": "福富・鈴木によるバイオリンスペシャルコンサート",
     "overview": "バイオリン",
@@ -965,19 +1000,24 @@
     "color": "red",
     "has_cm": false,
     "has_website": true,
-    "not-complete": true,
     "place": "講堂",
-    "place_id": "gym1"
+    "place_id": "gym1",
+    "overview": "バイオリン演奏"
   },
   {
     "$schema": "../booth-schema.json",
-    "not-complete": true,
     "booth_id": "volu-21",
     "booth_name": "小島・松村ウルトラバンド",
     "group_name": "小島・松村ウルトラバンド",
     "overview": "バイオリン",
     "place_id": "gym1",
-    "place": "講堂"
+    "place": "講堂",
+    "long_description": "多くの人に馴染みのあるであろう曲を演奏します。サイコピアニスト小島先生、メンタリスト兼チェリスト松村先生、限界突破バイオリニスト福富による演奏です。ぜひ来てください！",
+    "short_description": "サイコピアニスト小島先生、メンタリスト兼チェリスト松村先生、限界突破バイオリニスト福富による演奏です。ぜひ来てください！",
+    "has_website": false,
+    "has_cm": false,
+    "tags": ["performance"],
+    "color": "red"
   },
   {
     "$schema": "../booth-schema.json",

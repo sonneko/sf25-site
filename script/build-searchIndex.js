@@ -80,7 +80,6 @@ const NOISE_TOKENS = [
   'さん',
   'たち',
   'みな',
-  'んけうす',
   'ー',
   '。',
 
@@ -144,10 +143,25 @@ const ret = booths.map(booth => {
   // 説明文を分割
   const descTokens = segmentString(description);
 
+  const twoWordsTokens = descTokens.map((item, index) => {
+    if (isNoise(item)) return '';
+    if (isNoise(descTokens[index + 1] ?? '')) return '';
+    return item + (descTokens[index + 1] ?? '');
+  });
+
+  const threeWordsTokens = descTokens.map((item, index) => {
+    if (isNoise(item)) return '';
+    if (isNoise(descTokens[index + 1] ?? '')) return '';
+    if (isNoise(descTokens[index + 2] ?? '')) return '';
+    return item + (descTokens[index + 1] ?? '') + (descTokens[index + 2] ?? '');
+  });
+
   // 💡 3. トークンを結合し、ノイズ除去と大文字小文字の統一
   const allTokens = [
     ...nameAsToken, // ブース名を「化学部」のように一つのトークンとしてそのまま保持
     ...descTokens,
+    ...twoWordsTokens,
+    ...threeWordsTokens,
   ]
     .filter(token => !isNoise(token))
     .map(token => token.toLowerCase());

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import styles from './TimeTable.module.scss';
@@ -22,12 +22,11 @@ const minutesToDisplayTime = (minutes: number): string => {
   return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
 };
 
-
 /**
  * @param props
  * @returns
  */
-export default async function Timetable({
+export default function Timetable({
   events,
   tableStartTime,
   tableEndTime,
@@ -117,7 +116,7 @@ export default async function Timetable({
       }
     >
       <div className={styles.stageTabs}>
-        {(Object.keys(stageLabels) as StageKey[]).map((stageKey) => (
+        {(Object.keys(stageLabels) as StageKey[]).map(stageKey => (
           <button
             key={stageKey}
             className={`${styles.tabButton} ${
@@ -135,7 +134,9 @@ export default async function Timetable({
 
         <div className={styles.stageSchedule}>
           <div className={styles.stage}>
-            <div className={styles.stageHeader}>{stageLabels[selectedStage]}</div>
+            <div className={styles.stageHeader}>
+              {stageLabels[selectedStage]}
+            </div>
             <div
               className={styles.eventGrid}
               style={{ height: `${TOTAL_HEIGHT}px` }}

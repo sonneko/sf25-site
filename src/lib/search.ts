@@ -59,11 +59,9 @@ function similarity(str1: string, str2: string) {
   return similarityScore;
 }
 
-// --- 既存の getSearchIndex, segment 関数は変更なし ---
-
 async function getSearchIndex(): Promise<SearchIndex> {
   if (searchIndex !== null) return searchIndex;
-  const json = (await fetch('/search-index-last.json').then(res =>
+  const json = (await fetch('/search-index.json').then(res =>
     res.json()
   )) as unknown;
 
@@ -79,8 +77,6 @@ async function getSearchIndex(): Promise<SearchIndex> {
 function segment(input: string): string[] {
   return tinySegmenter.segment(input);
 }
-
-// --- ⭐️ 検索ロジックを精度向上のために完全に書き換えました ⭐️ ---
 
 export default async function useSearch(
   keyword: string,
