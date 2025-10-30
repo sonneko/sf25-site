@@ -15,13 +15,12 @@ export default function SearchForm() {
   const [searchResult, setSearchResult] = useState<Booth[] | null>(null);
   const [selectedTags, setSelectedTags] = useState<BoothTag[]>([]);
 
-  const searchHandler: MouseEventHandler<HTMLDivElement> = useCallback(() => {
-    setSearchInputValue('');
+  const searchHandler: MouseEventHandler<HTMLDivElement> = () => {
     setSearchResult(null);
     search(searchInputValue, selectedTags).then(result => {
       setSearchResult(result);
     });
-  }, [searchInputValue, selectedTags]);
+  }
 
   return (
     <>
@@ -36,6 +35,7 @@ export default function SearchForm() {
             onChange={event => {
               setSearchInputValue(event.target.value);
             }}
+            value={searchInputValue}
           />
         </div>
         <TagSlecter value={selectedTags} onChange={setSelectedTags} />
