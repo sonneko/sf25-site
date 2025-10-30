@@ -27,7 +27,7 @@ const minutesToDisplayTime = (minutes: number): string => {
  * @param props
  * @returns
  */
-export default async function Timetable({
+export default function Timetable({
   events,
   tableStartTime,
   tableEndTime,
