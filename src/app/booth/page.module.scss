@@ -17,5 +17,8 @@
     top: 5rem;
     max-height: 80vh;
     width: 200px;
+    @media (max-width: 780px) {
+      display: none;
+    }
   }
 }
