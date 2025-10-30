@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #fff; /* Assuming a white background for the header */
+  background-color: #305ab6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: A subtle shadow */
   z-index: 1200;
   margin: 0;
@@ -18,10 +18,10 @@
 .logo {
   font-size: 1.8em;
   font-weight: bold;
-  color: #333;
+  color: #ffff;
   text-decoration: none;
   a {
-    color: #333;
+    color: #fff;
     text-decoration: none;
   }
 }
@@ -43,7 +43,7 @@
   margin: 0 1.1vw;
   a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-weight: 500;
     &:hover {
       text-decoration: underline;
