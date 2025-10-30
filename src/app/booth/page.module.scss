@@ -1,15 +1,17 @@
+.title {
+  text-align: center;
+}
+
 .container {
   display: flex;
   align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
+
   .contents {
     width: calc(100% - 200px);
-    .title {
-      text-align: center;
-    }
     .spacer {
-      margin-top: 10rem;
+      margin-top: 0;
     }
   }
   .list {
