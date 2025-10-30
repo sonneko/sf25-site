@@ -10,8 +10,6 @@ export default async function EachBoothPage({ params }: Props) {
   const booth = await getBoothsById(id);
   return (
     <>
-      This is each blogs page in "/blog/{id}".
-      <br />
       {booth === undefined ? (
         <>Not found</>
       ) : (

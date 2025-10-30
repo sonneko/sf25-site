@@ -21,7 +21,7 @@ export default function SearchForm() {
     search(searchInputValue, selectedTags).then(result => {
       setSearchResult(result);
     });
-  }, [searchInputValue]);
+  }, [searchInputValue, selectedTags]);
 
   return (
     <>

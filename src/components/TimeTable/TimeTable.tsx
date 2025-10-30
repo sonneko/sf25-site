@@ -28,12 +28,12 @@ const minutesToDisplayTime = (minutes: number): string => {
  * @param props - TimetableProps
  * @returns タイムテーブルのReact要素
  */
-export const Timetable = ({
+export default async function Timetable({
   events,
   tableStartTime,
   tableEndTime,
   pixelPer30Minutes = 60,
-}: TimetableProps) => {
+}: TimetableProps) {
   const START_MINUTES = timeToMinutes(tableStartTime);
   const END_MINUTES = timeToMinutes(tableEndTime);
   const TOTAL_DURATION_MINUTES = END_MINUTES - START_MINUTES;
@@ -104,11 +104,6 @@ export const Timetable = ({
           >
             <div className={styles.eventTitle}>{event.name}</div>
             <div className={styles.eventTime}>{displayTime}</div>
-            <img
-              className={styles.eventIcon}
-              src={`booths-icon/${event.id.split('_')[0]}.png`}
-              width={positionStyles.height}
-            />
           </a>
         );
       });
@@ -124,7 +119,6 @@ export const Timetable = ({
       <div className={styles.timeAxis}>{renderTimeMarkers()}</div>
 
       <div className={styles.stageSchedule}>
-        {/* 講堂 */}
         <div className={styles.stage}>
           <div className={styles.stageHeader}>講堂</div>
           <div
@@ -135,7 +129,6 @@ export const Timetable = ({
           </div>
         </div>
 
-        {/* 音楽室 */}
         <div className={styles.stage}>
           <div className={styles.stageHeader}>音楽室</div>
           <div
@@ -148,4 +141,4 @@ export const Timetable = ({
       </div>
     </div>
   );
-};
+}

@@ -1,4 +1,4 @@
-import { Timetable } from '@/components/TimeTable/TimeTable';
+import Timetable from '@/components/TimeTable/TimeTable';
 import type { Booth } from '../../types/booth';
 import type { EventData } from '../../components/TimeTable/types';
 import { getAllBooths } from '../../lib/BoothsProvider';

@@ -89,14 +89,13 @@ export default async function useSearch(
   const searchIndex = await getSearchIndex();
   const segmentedKeywords = segment(keyword);
 
-  // キーワードがない場合は空の配列を返すか、全ブースを返すか選択可能ですが、今回は空で。
   if (segmentedKeywords.length === 0) {
     return (await getBooths()).filter(booth => {
       const hasTagsBooths = selectedTags.map(selectedTag =>
         booth.tags.includes(selectedTag)
       );
-      if (hasTagsBooths.length === 0) return false;
-      return hasTagsBooths.reduce((a, b) => a && b);
+      if (hasTagsBooths.length === 0) return true;
+      return hasTagsBooths.reduce((a, b) => a || b);
     });
   }
 
@@ -104,11 +103,10 @@ export default async function useSearch(
   const boothScores: number[] = Array(searchIndex.length).fill(0);
 
   segmentedKeywords.forEach(searchWord => {
-    // 短すぎるノイズ単語（例: 'a', 'の', 'は'）を無視して精度向上
     if (searchWord.length < 2) return;
 
     searchIndex.forEach((target, index) => {
-      let maxScoreForWord = 0; // その検索キーワードに対して、ブースが獲得できる最高スコア
+      let maxScoreForWord = 0;
 
       target.tokens.forEach(indexToken => {
         // 1. 🥇 完全一致 (Exact Match): 最高のスコア
@@ -125,10 +123,8 @@ export default async function useSearch(
 
         // 3. 🥉 レーベンシュタイン類似度 (Fuzzy Match / タイポ対策): 中程度のスコア
         const simScore = similarity(indexToken, searchWord);
-        // 類似度が80%以上の場合のみスコアを加算
         if (simScore >= 60) {
-          // スコアに換算し、既存のスコアと比較
-          maxScoreForWord = Math.max(maxScoreForWord, Math.floor(simScore * 7));
+          maxScoreForWord = Math.max(maxScoreForWord, Math.floor(simScore * 3));
         }
       });
 
@@ -161,7 +157,7 @@ export default async function useSearch(
     const hasTagBooths = selectedTags.map(selectedTag =>
       booth.tags.includes(selectedTag)
     );
-    if (hasTagBooths.length === 0) return false;
+    if (hasTagBooths.length === 0) return true;
     return hasTagBooths.reduce((a, b) => a && b);
   });
 }
