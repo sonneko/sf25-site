@@ -1,9 +1,10 @@
 'use client';
+
 import { useState, useRef } from 'react';
 import styles from './Map.module.scss';
 import 'pinch-zoom-element';
-import ImageMapper from 'react-img-mapper';
-import areasJson from 'assets/map-image-map.json';
+// import ImageMapper from 'react-img-mapper';
+// import areasJson from 'assets/map-image-map.json';
 
 type Layer = 1 | 2 | 3 | 4 | 5;
 
@@ -11,7 +12,7 @@ type Layer = 1 | 2 | 3 | 4 | 5;
 export default function Map() {
   const [nowLayer, setNowLayer] = useState<Layer>(1);
   const [detailInfo] = useState<string>(
-    '地図中の文字をクリックするとここに詳細が表示されます。'
+    ''
   );
   const [is_highschool, setIs_highschool] = useState<boolean>(false);
   const pinchTargetRef = useRef<HTMLDivElement>(null);
@@ -72,17 +73,19 @@ export default function Map() {
         </div>
         <div className={styles.map}>
           <pinch-zoom ref={pinchTargetRef} className={styles.map_svg}>
-            <ImageMapper
+            {/* <ImageMapper
               src={`/map/${is_highschool ? 'h' : 'm'}f${nowLayer}.jpeg`}
               name='map'
               responsive={false}
+              width={1489}
               areas={areasJson.filter(
                 area =>
-                  area.school === (is_highschool ? 'h' : 'm') &&
+                  (area.school === ((nowLayer === 1 || nowLayer === 5) ? "common" : (is_highschool ? 'h' : 'm') ))&&
                   area.floor === nowLayer
               )}
-              onClick={id => alert(id.id)}
-            />
+              onClick={area => alert(area.id)}
+            /> */}
+            <img src={`/map/${is_highschool ? 'h' : 'm'}f${nowLayer}.jpeg`} />
           </pinch-zoom>
           <p className={styles.map_ui}>ピンチアウトで拡大縮小できます</p>
         </div>
