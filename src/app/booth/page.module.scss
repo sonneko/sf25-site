@@ -2,8 +2,9 @@
   display: flex;
   align-items: flex-start;
   width: 100%;
+  box-sizing: border-box;
   .contents {
-
+    width: calc(100% - 200px);
     .title {
       text-align: center;
     }
@@ -15,8 +16,6 @@
     position: sticky;
     top: 5rem;
     max-height: 80vh;
-
     width: 200px;
-
   }
 }
