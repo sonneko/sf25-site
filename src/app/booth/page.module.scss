@@ -1,3 +1,5 @@
+@use "../../styles/_mixin" as mx; 
+
 .title {
   text-align: center;
 }
@@ -19,7 +21,9 @@
     top: 5rem;
     max-height: 80vh;
     width: 200px;
-    @media (max-width: 780px) {
+    overflow-y: scroll;
+    border-left: 2px #333 dotted;
+    @include mx.media("<tablet") {
       display: none;
     }
   }
