@@ -2,7 +2,7 @@
 
 import styles from './SearchForm.module.scss';
 import type { MouseEventHandler } from 'react';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import SearchResult from '../SearchResult/SearchResult';
 import type { BoothTag } from '../../types/booth';
 import { type Booth } from '../../types/booth';
