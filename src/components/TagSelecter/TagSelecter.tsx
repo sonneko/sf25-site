@@ -46,7 +46,7 @@ export default function TagSlecter({
               }}
               className={styles.button}
             >
-              {convertBoothTagInfo(tag)} 
+              {convertBoothTagInfo(tag)}
               {/* ✅ の代わりにSVGコンポーネントを条件付きでレンダリング */}
               {isSelected ? <CheckIcon /> : null}
             </button>

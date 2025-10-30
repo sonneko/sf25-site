@@ -11,9 +11,7 @@ type Layer = 1 | 2 | 3 | 4 | 5;
 // TODO: 最適化の余地あり
 export default function Map() {
   const [nowLayer, setNowLayer] = useState<Layer>(1);
-  const [detailInfo] = useState<string>(
-    ''
-  );
+  const [detailInfo] = useState<string>('');
   const [is_highschool, setIs_highschool] = useState<boolean>(false);
   const pinchTargetRef = useRef<HTMLDivElement>(null);
 

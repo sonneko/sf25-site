@@ -1,4 +1,4 @@
-@use "../../styles/_mixin" as mx; 
+@use '../../styles/_mixin' as mx;
 
 .title {
   text-align: center;
@@ -23,7 +23,7 @@
     width: 200px;
     overflow-y: scroll;
     border-left: 2px #333 dotted;
-    @include mx.media("<tablet") {
+    @include mx.media('<tablet') {
       display: none;
     }
   }

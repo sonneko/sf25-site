@@ -10,13 +10,12 @@
     padding: 2rem;
     margin: 1.6rem;
     display: flex;
-    
 
     @media (max-width: 700px) {
       flex-direction: column;
     }
     border-radius: 50px;
-  
+
     .card_img {
       border-radius: 20px;
       box-shadow: 10px 10px 0 0 black;

@@ -20,7 +20,7 @@ export default function SearchForm() {
     search(searchInputValue, selectedTags).then(result => {
       setSearchResult(result);
     });
-  }
+  };
 
   return (
     <>
