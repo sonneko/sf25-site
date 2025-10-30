@@ -7,49 +7,57 @@
     padding: 2rem;
     margin: 4rem;
     display: flex;
-    border-radius: 50px;;
-  }
 
-  .card_img {
-    border-radius: 20px;
-    box-shadow: 10px 10px 0 0 black;
-    width: 20vw;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-  }
+    @media (max-width: 400px) {
+      flex-direction: column;
+    }
+    border-radius: 50px;
+  
+    .card_img {
+      border-radius: 20px;
+      box-shadow: 10px 10px 0 0 black;
+      width: 120px;
+      height: 120px;
 
-  .card_content {
-    margin: 5px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .card_title {
-      font-size: 1.5rem;
-      font-weight: normal;
-      margin: 0;
-      margin-left: 1.7em;
+      aspect-ratio: 1/1;
+      object-fit: contain;
     }
 
-    .card_groupname {
-      text-align: right;
-      margin-right: 3em;
-    }
+    .card_content {
+      margin: 5px 20px;
+      width: 400px;
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-    .card_text {
-      margin: 0 1.6em;
-    }
+      .card_title {
+        font-size: 1.5rem;
+        font-weight: normal;
+        margin: 0;
+        margin-left: 1.7em;
+      }
 
-    .tag {
-      margin: 0.5em 2em;
-      .tag_item {
-        display: inline-block;
-        color: white;
-        padding: 5px;
-        border-radius: 12px;
-        font-size: 15px;
-        background-color: black;
-        margin: 0 3px;
+      .card_groupname {
+        text-align: right;
+        margin-right: 3em;
+      }
+
+      .card_text {
+        margin: 0 1.6em;
+      }
+
+      .tag {
+        margin: 0.5em 2em;
+        .tag_item {
+          display: inline-block;
+          color: white;
+          padding: 5px;
+          border-radius: 12px;
+          font-size: 15px;
+          background-color: black;
+          margin: 0 3px;
+        }
       }
     }
   }
