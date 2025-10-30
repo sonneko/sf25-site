@@ -60,6 +60,7 @@ $time-axis-width: 10vw;
 /* 各ステージ */
 .stage {
   width: 50%;
+  min-width: 240px;
   padding: 10px;
   position: relative;
   border-left: 1px solid #eee;
