@@ -9,7 +9,7 @@
   "color": "red",
   "has_cm": false,
   "has_website": true,
-  "not-complete": true,
   "place": "講堂",
-  "place_id": "gym1"
+  "place_id": "gym1",
+  "overview": "バイオリン演奏"
 }
