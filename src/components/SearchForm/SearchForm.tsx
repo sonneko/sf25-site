@@ -26,9 +26,9 @@ export default function SearchForm() {
     <>
       <div className={styles.form}>
         <div className={styles.search_box}>
-          <div className={styles.search_icon} onClick={searchHandler}>
+          <button className={styles.search_icon} onClick={searchHandler}>
             <img src='/icon/search.svg' alt='search icon' />
-          </div>
+          </button>
           <input
             className={styles.search_input}
             type='text'
