@@ -22,12 +22,20 @@ export default function NazoSpecialPage() {
 
                 <h3>問題</h3>
 
-                <div className="images">
+                <div className={styles.images}>
                     <img src="/nazo-images/1.jpeg" width={1000} className={styles.img}></img>
                     <img src="/nazo-images/2.jpeg" width={1000} className={styles.img}></img>
                     <img src="/nazo-images/3.jpeg" width={1000} className={styles.img}></img>
-                    <img src="/nazo-images/4.jpeg" width={1000} className={styles.img}></img>
+                    <img src="/nazo-images/4.jpeg" width={500} className={styles.img}></img>
                 </div>
+
+                <h3>ヒント</h3>
+
+                <div className={`${styles.images} ${styles.hint}`}>
+                    <img src="/nazo-images/5.jpeg" width={500} className={styles.img}></img>
+                    <img src="/nazo-images/6.jpeg" width={500} className={styles.img}></img>
+                </div>
+
 
             </div>
         </>
