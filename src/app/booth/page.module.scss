@@ -1,25 +1,21 @@
-.title {
-  text-align: center;
-}
-
-.spacer {
-  margin-top: 10rem;
-}
-
 .container {
   display: flex;
   align-items: flex-start;
-}
-
-.list {
-  position: sticky;
-  top: 5rem;
-  max-height: 80vh;
-  overflow-y: auto;
-  width: 30%;
-  max-width: 100%;
-}
-
-.contents {
-  width: 75%;
+  .contents {
+    width: 75%;
+    .title {
+      text-align: center;
+    }
+    .spacer {
+      margin-top: 10rem;
+    }
+  }
+  .list {
+    position: sticky;
+    top: 5rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 30%;
+    max-width: 100%;
+  }
 }
