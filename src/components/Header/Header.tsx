@@ -23,7 +23,14 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.logo}>
-          <Link href='/'>SEIKO SF25</Link>
+          <img
+            src='icon/sf-logo-mono.svg'
+            height={40}
+            className={styles.logo_img}
+          />
+          <Link href='/'>
+            <span>Sin</span>Fonia
+          </Link>
         </div>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
